@@ -32,7 +32,7 @@ fun Navigation() {
         ) { navBackStackEntry ->
             val id = navBackStackEntry.arguments?.getInt("newsId")
             val new = MockData.getNew(id)
-            DetailScreen(new, scrollState)
+            DetailScreen(new, scrollState, navController)
         }
     }
 }
