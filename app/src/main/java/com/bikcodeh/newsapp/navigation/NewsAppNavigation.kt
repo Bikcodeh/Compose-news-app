@@ -1,5 +1,6 @@
 package com.bikcodeh.newsapp.navigation
 
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,6 +19,7 @@ fun NewsApp() {
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
+    val scrollState = rememberScrollState()
     NavHost(navController = navController, startDestination = "TopNews") {
         composable("TopNews") {
             TopNews(navController = navController)
@@ -30,7 +32,7 @@ fun Navigation() {
         ) { navBackStackEntry ->
             val id = navBackStackEntry.arguments?.getInt("newsId")
             val new = MockData.getNew(id)
-            DetailScreen(navController = navController, new)
+            DetailScreen(new, scrollState)
         }
     }
 }
