@@ -13,9 +13,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.R
+import com.bikcodeh.newsapp.domain.model.MockData
+import com.bikcodeh.newsapp.domain.model.News
 
 @Composable
-fun DetailScreen(navController: NavController) {
+fun DetailScreen(navController: NavController, news: News) {
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = stringResource(id = R.string.detail_screen_title),
@@ -24,7 +26,7 @@ fun DetailScreen(navController: NavController) {
         Button(onClick = {
             navController.popBackStack()
         }) {
-            Text(text = "Back")
+            Text(text = "Back + ${news.title}")
         }
     }
 }
@@ -33,5 +35,5 @@ fun DetailScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun DetailScreenPreview() {
-    DetailScreen(rememberNavController())
+    DetailScreen(rememberNavController(), MockData.topNewsList.first())
 }

@@ -23,7 +23,9 @@ fun TopNews(navController: NavController) {
         Text(text = stringResource(id = R.string.top_news_title), fontWeight = FontWeight.SemiBold)
         LazyColumn() {
             items(MockData.topNewsList) { item ->
-                TopNewsItem(news = item)
+                TopNewsItem(news = item, onItemClick = {
+                    navController.navigate("DetailScreen/${item.id}")
+                })
             }
         }
     }

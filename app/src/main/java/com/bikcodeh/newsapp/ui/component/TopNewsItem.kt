@@ -1,6 +1,7 @@
 package com.bikcodeh.newsapp.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,11 +17,14 @@ import com.bikcodeh.newsapp.domain.model.MockData
 import com.bikcodeh.newsapp.domain.model.News
 
 @Composable
-fun TopNewsItem(news: News) {
+fun TopNewsItem(news: News, onItemClick: () -> Unit) {
     Box(
         modifier = Modifier
             .height(200.dp)
             .padding(8.dp)
+            .clickable {
+                onItemClick()
+            }
     ) {
         Image(
             painter = painterResource(id = news.image),
@@ -48,5 +52,5 @@ fun TopNewsItem(news: News) {
 @Preview
 @Composable
 fun TopNewsItemPreview() {
-    TopNewsItem(news = MockData.topNewsList[1])
+    TopNewsItem(news = MockData.topNewsList[1], onItemClick = {})
 }
