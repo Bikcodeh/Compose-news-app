@@ -1,4 +1,4 @@
-package com.bikcodeh.newsapp.ui.screen
+package com.bikcodeh.newsapp.ui.screen.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +18,7 @@ fun TopNews() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun TopNewsPreview() {
     TopNews()
