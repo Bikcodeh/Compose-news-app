@@ -9,7 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.bikcodeh.newsapp.navigation.NewsApp
+import com.bikcodeh.newsapp.ui.screen.home.NewsApp
 import com.bikcodeh.newsapp.ui.theme.NewsAppTheme
 
 class MainActivity : ComponentActivity() {
