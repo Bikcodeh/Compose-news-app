@@ -22,14 +22,16 @@ android {
 
     buildTypes {
         Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        if (project.rootProject.file("local.properties").exists()) {
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        }
         debug {
-            buildConfigField "String", "APP_CENTER_KEY", '"'+properties.getProperty("appCenterKey")+'"'
+            buildConfigField "String", "APP_CENTER_KEY", '"' + properties.getProperty("APP_CENTER_KEY") + '"'
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "APP_CENTER_KEY", '"'+properties.getProperty("APP_CENTER_KEY")+'"'
+            buildConfigField "String", "APP_CENTER_KEY", '"' + properties.getProperty("APP_CENTER_KEY") + '"'
         }
     }
     compileOptions {
