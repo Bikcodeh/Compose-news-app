@@ -24,11 +24,13 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "APP_CENTER_KEY", '"' + getProps("APP_CENTER_KEY") + '"'
+            buildConfigField "String", "NEWS_API_KEY", '"' + getProps("NEWS_API_KEY") + '"'
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "APP_CENTER_KEY", '"' + getProps("APP_CENTER_KEY") + '"'
+            buildConfigField "String", "NEWS_API_KEY", '"' + getProps("NEWS_API_KEY") + '"'
         }
     }
     compileOptions {
@@ -82,6 +84,9 @@ dependencies {
     /** OkHttp */
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    /** Moshi */
+    implementation "com.squareup.moshi:moshi-kotlin:1.9.3"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

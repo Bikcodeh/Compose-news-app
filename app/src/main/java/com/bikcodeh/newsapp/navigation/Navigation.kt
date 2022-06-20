@@ -9,11 +9,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.bikcodeh.newsapp.domain.model.MockData
 import com.bikcodeh.newsapp.ui.screen.detail.DetailScreen
-import com.bikcodeh.newsapp.ui.screen.home.TopNews
+import com.bikcodeh.newsapp.ui.screen.home.NewsManager
 import com.bikcodeh.newsapp.ui.screen.home.bottomNavigation
 
 @Composable
-fun Navigation(navController: NavHostController, scrollState: ScrollState) {
+fun Navigation(
+    navController: NavHostController,
+    scrollState: ScrollState,
+    newsManager: NewsManager = NewsManager()
+) {
+    val articles = newsManager.newsResponse.value.articles
+
     NavHost(navController = navController, startDestination = "TopNewsScreen") {
         bottomNavigation(navController = navController)
         composable(
