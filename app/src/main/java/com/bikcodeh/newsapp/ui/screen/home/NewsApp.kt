@@ -13,6 +13,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.navigation.BottomMenuScreen
 import com.bikcodeh.newsapp.navigation.Navigation
 import com.bikcodeh.newsapp.ui.component.BottomMenu
@@ -32,13 +33,13 @@ fun MainScreen(navController: NavHostController, scrollState: ScrollState) {
     Scaffold(bottomBar = {
         BottomMenu(navController = navController)
     }) {
-        Navigation(navController, scrollState)
+        Navigation(navController, scrollState, paddingValues = it)
     }
 }
 
-fun NavGraphBuilder.bottomNavigation(navController: NavController) {
+fun NavGraphBuilder.bottomNavigation(navController: NavController, articles: List<TopNewsArticle>) {
     composable(BottomMenuScreen.TopNews.route) {
-        TopNews(navController = navController)
+        TopNews(navController = navController, articles)
     }
 
     composable(BottomMenuScreen.Categories.route) {

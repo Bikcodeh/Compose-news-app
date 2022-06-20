@@ -1,6 +1,5 @@
 package com.bikcodeh.newsapp.ui.screen.detail
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -13,9 +12,11 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,12 +24,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.R
+import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.domain.model.MockData
 import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
-import com.bikcodeh.newsapp.domain.model.News
+import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun DetailScreen(news: News, scrollState: ScrollState, navController: NavController) {
+fun DetailScreen(article: TopNewsArticle, scrollState: ScrollState, navController: NavController) {
     Scaffold(
         topBar = {
             DetailTopBar(onBackPressed = { navController.popBackStack() })
@@ -39,7 +41,13 @@ fun DetailScreen(news: News, scrollState: ScrollState, navController: NavControl
                 .fillMaxWidth()
                 .verticalScroll(scrollState), horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(painter = painterResource(id = news.image), contentDescription = "")
+            CoilImage(
+                imageModel = article.urlToImage,
+                contentDescription = "",
+                contentScale = ContentScale.FillBounds,
+                error = ImageBitmap.imageResource(R.drawable.breaking_news),
+                placeHolder = ImageBitmap.imageResource(R.drawable.breaking_news)
+            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -47,19 +55,19 @@ fun DetailScreen(news: News, scrollState: ScrollState, navController: NavControl
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                InfoWithIcon(icon = Icons.Default.Edit, info = news.author)
+                InfoWithIcon(icon = Icons.Default.Edit, info = article.author ?: "Not available")
                 InfoWithIcon(
                     icon = Icons.Default.DateRange,
-                    info = MockData.stringToDate(news.publishedAt).getTimeAgo()
+                    info = MockData.stringToDate(article.publishedAt!!).getTimeAgo()
                 )
             }
             Text(
-                text = news.title,
+                text = article.title ?: "Not available",
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             Text(
-                text = news.description,
+                text = article.description ?: "Not available",
                 modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
             )
         }
@@ -87,9 +95,17 @@ fun InfoWithIcon(icon: ImageVector, info: String) {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun DetailScreenPreview() {
-    DetailScreen(MockData.topNewsList.first(), rememberScrollState(), rememberNavController())
+    DetailScreen(
+        TopNewsArticle(
+            author = "CBSBoston.com Staff",
+            title = "Principal Beaten Unconscious At Dorchester School; Classes Canceled Thursday - CBS Boston",
+            description = "Principal Patricia Lampron and another employee were assaulted at Henderson Upper Campus during dismissal on Wednesday.",
+            publishedAt = "2021-11-04T01:55:00Z"
+        ),
+        rememberScrollState(),
+        rememberNavController()
+    )
 }
