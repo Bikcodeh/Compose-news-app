@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.navigation.BottomMenuScreen
+import com.bikcodeh.newsapp.navigation.Screen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -30,7 +31,7 @@ fun BottomMenu(navController: NavController) {
     var bottomBarState by rememberSaveable { (mutableStateOf(true)) }
 
     bottomBarState = when (navController.currentBackStackEntry?.destination?.route) {
-        "DetailScreen/{newsId}" -> false
+        Screen.Detail.route -> false
         else -> true
     }
 
