@@ -31,12 +31,12 @@ fun Navigation(
             bottomNavigation(navController = navController, articles)
 
             composable(
-                "DetailScreen/{index}",
-                arguments = listOf(navArgument("index") {
+                Screen.Detail.route,
+                arguments = listOf(navArgument(Screen.Detail.NAV_ARG_KEY) {
                     type = NavType.IntType
                 })
             ) { navBackStackEntry ->
-                val index = navBackStackEntry.arguments?.getInt("index")
+                val index = navBackStackEntry.arguments?.getInt(Screen.Detail.NAV_ARG_KEY)
                 index?.let {
                     DetailScreen(articles[index], scrollState, navController)
                 }

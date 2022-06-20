@@ -10,6 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
+import com.bikcodeh.newsapp.navigation.Screen
 import com.bikcodeh.newsapp.ui.component.TopNewsItem
 
 @Composable
@@ -18,7 +19,7 @@ fun TopNews(navController: NavController, articles: List<TopNewsArticle>) {
         LazyColumn() {
             items(articles.count()) { index ->
                 TopNewsItem(article = articles[index], onItemClick = {
-                    navController.navigate("DetailScreen/$index")
+                    navController.navigate(Screen.Detail.passNewsIndex(index))
                 })
             }
         }
