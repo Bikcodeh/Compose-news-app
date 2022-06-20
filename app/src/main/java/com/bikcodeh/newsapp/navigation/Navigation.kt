@@ -28,7 +28,7 @@ fun Navigation(
             startDestination = BottomMenuScreen.TopNews.route,
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
-            bottomNavigation(navController = navController, articles)
+            bottomNavigation(navController = navController, articles, newsManager)
 
             composable(
                 Screen.Detail.route,
