@@ -24,11 +24,13 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "APP_CENTER_KEY", '"' + getProps("APP_CENTER_KEY") + '"'
+            buildConfigField "String", "NEWS_API_KEY", '"' + getProps("NEWS_API_KEY") + '"'
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "APP_CENTER_KEY", '"' + getProps("APP_CENTER_KEY") + '"'
+            buildConfigField "String", "NEWS_API_KEY", '"' + getProps("NEWS_API_KEY") + '"'
         }
     }
     compileOptions {
@@ -62,6 +64,9 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.activity:activity-compose:1.3.1'
+    /** Lifecycle */
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     /** Material icons */
     implementation "androidx.compose.material:material-icons-extended:1.1.1"
     /** App center */
@@ -74,6 +79,16 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$hilt_compiler_version"
     kapt "com.google.dagger:hilt-compiler:$dagger_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_compiler_version"
+    /** Retrofit */
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    /** OkHttp */
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    /** Moshi */
+    implementation "com.squareup.moshi:moshi-kotlin:1.9.3"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+    /** Coil */
+    implementation "com.github.skydoves:landscapist-coil:1.4.1"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
