@@ -14,14 +14,14 @@ interface NewsService {
     ): TopNewsResponse*/
 
     @GET("top-headlines")
-    fun getTopArticles(
+    suspend fun getTopArticles(
         @Query("country") country: String
-    ): Call<TopNewsResponse>
+    ): TopNewsResponse
 
     @GET("top-headlines")
-    fun getArticlesByCategory(
+    suspend fun getArticlesByCategory(
         @Query("category") category: String
-    ): Call<TopNewsResponse>
+    ): TopNewsResponse
 
     @GET("everything")
     fun getArticlesBySources(

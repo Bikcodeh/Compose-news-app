@@ -15,41 +15,43 @@ import com.bikcodeh.newsapp.navigation.Navigation
 import com.bikcodeh.newsapp.ui.component.BottomMenu
 import com.bikcodeh.newsapp.ui.screen.category.CategoriesScreen
 import com.bikcodeh.newsapp.ui.screen.source.SourceScreen
+import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
-fun NewsApp() {
+fun NewsApp(mainViewModel: MainViewModel) {
     val navController = rememberNavController()
     val scrollState = rememberScrollState()
 
-    MainScreen(navController, scrollState)
+    MainScreen(navController, scrollState, mainViewModel)
 }
 
 @Composable
-fun MainScreen(navController: NavHostController, scrollState: ScrollState) {
+fun MainScreen(navController: NavHostController, scrollState: ScrollState, mainViewModel: MainViewModel) {
     Scaffold(bottomBar = {
         BottomMenu(navController = navController)
     }) {
-        Navigation(navController, scrollState, paddingValues = it)
+        Navigation(navController, scrollState, paddingValues = it, mainViewModel = mainViewModel)
     }
 }
 
 fun NavGraphBuilder.bottomNavigation(
     navController: NavController,
     articles: List<TopNewsArticle>,
-    newsManager: NewsManager
+    newsManager: NewsManager,
+    mainViewModel: MainViewModel
 ) {
     composable(BottomMenuScreen.TopNews.route) {
         TopNews(navController = navController, articles, newsManager.query, newsManager)
     }
 
     composable(BottomMenuScreen.Categories.route) {
-        newsManager.onSelectedCategoryChanged("business")
-        newsManager.getArticlesByCategory("business")
+        mainViewModel.onSelectedCategoryChanged("business")
+        mainViewModel.getArticlesByCategory("business")
 
-        CategoriesScreen(onFetchCategory = {
-            newsManager.onSelectedCategoryChanged(it)
-            newsManager.getArticlesByCategory(it)
-        }, newsManager)
+        CategoriesScreen(mainViewModel = mainViewModel, onFetchCategory = {
+            mainViewModel.onSelectedCategoryChanged(it)
+            mainViewModel.getArticlesByCategory(it)
+        })
     }
 
     composable(BottomMenuScreen.Sources.route) {

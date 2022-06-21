@@ -2,16 +2,21 @@ package com.bikcodeh.newsapp.ui.screen.home
 
 import android.util.Log
 import androidx.compose.runtime.*
-import com.bikcodeh.newsapp.BuildConfig
 import com.bikcodeh.newsapp.data.model.TopNewsResponse
 import com.bikcodeh.newsapp.data.remote.Api
+import com.bikcodeh.newsapp.data.remote.NewsService
+import com.bikcodeh.newsapp.domain.common.Result
+import com.bikcodeh.newsapp.domain.common.makeSafeRequest
 import com.bikcodeh.newsapp.domain.model.ArticleCategory
 import com.bikcodeh.newsapp.domain.model.getArticleCategory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class NewsManager {
+class NewsManager @Inject constructor(
+    private val newsService: NewsService
+) {
 
     private val _newsResponse =
         mutableStateOf(TopNewsResponse())
@@ -50,51 +55,16 @@ class NewsManager {
 
     val query = mutableStateOf("")
 
-    init {
-        getArticles()
+    suspend fun getArticles(country: String): Result<TopNewsResponse> {
+        return makeSafeRequest {
+            newsService.getTopArticles(country)
+        }
     }
 
-    private fun getArticles() {
-        val service = Api.retrofitService.getTopArticles("us")
-        service.enqueue(object : Callback<TopNewsResponse> {
-            override fun onResponse(
-                call: Call<TopNewsResponse>,
-                response: Response<TopNewsResponse>
-            ) {
-                if (response.isSuccessful) {
-                    _newsResponse.value = response.body()!!
-                    Log.d("news", "${_newsResponse.value}")
-                } else {
-                    Log.d("error", "${response.errorBody()}")
-                }
-            }
-
-            override fun onFailure(call: Call<TopNewsResponse>, t: Throwable) {
-                Log.d("error", "${t.printStackTrace()}")
-            }
-
-        })
-    }
-
-    fun getArticlesByCategory(category: String) {
-        val service = Api.retrofitService.getArticlesByCategory(category)
-        service.enqueue(object : Callback<TopNewsResponse> {
-            override fun onResponse(
-                call: Call<TopNewsResponse>,
-                response: Response<TopNewsResponse>
-            ) {
-                if (response.isSuccessful) {
-                    _getArticleByCategory.value = response.body()!!
-                    Log.d("Category", "${_getArticleByCategory.value}")
-                } else {
-                    Log.d("error", "${response.errorBody()}")
-                }
-            }
-
-            override fun onFailure(call: Call<TopNewsResponse>, t: Throwable) {
-                Log.d("error", "${t.printStackTrace()}")
-            }
-        })
+    suspend fun getArticlesByCategory(category: String): Result<TopNewsResponse> {
+        return makeSafeRequest {
+            newsService.getArticlesByCategory(category)
+        }
     }
 
     fun getArticlesBySource() {

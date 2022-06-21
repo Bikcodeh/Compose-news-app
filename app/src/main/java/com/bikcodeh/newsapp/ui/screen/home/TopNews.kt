@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
+import com.bikcodeh.newsapp.data.remote.Api
 import com.bikcodeh.newsapp.navigation.Screen
 import com.bikcodeh.newsapp.ui.component.SearchBar
 import com.bikcodeh.newsapp.ui.component.TopNewsItem
@@ -48,5 +49,5 @@ fun TopNews(
 @Preview(showBackground = true)
 @Composable
 fun TopNewsPreview() {
-    TopNews(rememberNavController(), emptyList(), mutableStateOf(""), NewsManager())
+    TopNews(rememberNavController(), emptyList(), mutableStateOf(""), NewsManager(Api.retrofitService))
 }

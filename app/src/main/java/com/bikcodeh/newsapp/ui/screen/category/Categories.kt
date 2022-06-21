@@ -11,6 +11,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -25,11 +27,15 @@ import com.bikcodeh.newsapp.domain.model.MockData
 import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
 import com.bikcodeh.newsapp.domain.model.getAllArticleCategory
 import com.bikcodeh.newsapp.ui.screen.home.NewsManager
+import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun CategoriesScreen(onFetchCategory: (String) -> Unit, newsManager: NewsManager) {
+fun CategoriesScreen(onFetchCategory: (String) -> Unit, mainViewModel: MainViewModel) {
     val tabItems = getAllArticleCategory()
+
+    val mainState by mainViewModel.mainState.collectAsState()
+
     Column() {
         LazyRow() {
             items(tabItems.size) {
@@ -37,11 +43,11 @@ fun CategoriesScreen(onFetchCategory: (String) -> Unit, newsManager: NewsManager
                 CategoryTab(
                     category = category.categoryName,
                     onFetchCategory = onFetchCategory,
-                    isSelected = newsManager.selectedCategory.value == category
+                    isSelected = mainState.selectedCategory == category
                 )
             }
         }
-        ArticleContent(articles = newsManager.getArticleByCategory.value.articles ?: emptyList())
+        ArticleContent(articles = mainState.articlesByCategory)
     }
 }
 

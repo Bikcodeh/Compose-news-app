@@ -4,26 +4,34 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
+import com.bikcodeh.newsapp.data.remote.Api
 import com.bikcodeh.newsapp.ui.screen.detail.DetailScreen
 import com.bikcodeh.newsapp.ui.screen.home.NewsManager
 import com.bikcodeh.newsapp.ui.screen.home.bottomNavigation
+import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
 fun Navigation(
     navController: NavHostController,
     scrollState: ScrollState,
-    newsManager: NewsManager = NewsManager(),
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    newsManager: NewsManager = NewsManager(Api.retrofitService),
+    mainViewModel: MainViewModel
 ) {
+    val mainState by mainViewModel.mainState.collectAsState()
+
     val articles = mutableListOf(TopNewsArticle())
-    articles.addAll(newsManager.newsResponse.value.articles ?: listOf())
+    articles.addAll(mainState.articles)
 
     articles.let {
         NavHost(
@@ -31,7 +39,7 @@ fun Navigation(
             startDestination = BottomMenuScreen.TopNews.route,
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
-            bottomNavigation(navController = navController, articles, newsManager)
+            bottomNavigation(navController = navController, articles, newsManager, mainViewModel)
 
             composable(
                 Screen.Detail.route,
