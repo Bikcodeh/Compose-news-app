@@ -5,31 +5,33 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.navigation.Screen
 import com.bikcodeh.newsapp.ui.component.SearchBar
 import com.bikcodeh.newsapp.ui.component.TopNewsItem
+import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
 fun TopNews(
     navController: NavController,
     articles: List<TopNewsArticle>,
-    query: MutableState<String>,
-    newsManager: NewsManager
+    mainViewModel: MainViewModel
 ) {
+    val mainState by mainViewModel.mainState.collectAsState()
+
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        SearchBar(query = query, newsManager = newsManager)
-        val searchedText = query.value
+        SearchBar(mainViewModel)
         val resultList = mutableListOf<TopNewsArticle>()
-        if (searchedText.isNotEmpty()) {
-            resultList.addAll(newsManager.searchedNews.value.articles ?: articles)
+        if (mainState.searchedNews.isNotEmpty()) {
+            resultList.addAll(mainState.searchedNews)
         } else {
             resultList.addAll(articles)
         }
@@ -48,5 +50,5 @@ fun TopNews(
 @Preview(showBackground = true)
 @Composable
 fun TopNewsPreview() {
-    TopNews(rememberNavController(), emptyList(), mutableStateOf(""), NewsManager())
+    TopNews(rememberNavController(), emptyList(), viewModel())
 }
