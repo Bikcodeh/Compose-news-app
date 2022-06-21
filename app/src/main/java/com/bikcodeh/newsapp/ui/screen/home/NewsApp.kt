@@ -39,7 +39,7 @@ fun NavGraphBuilder.bottomNavigation(
     newsManager: NewsManager
 ) {
     composable(BottomMenuScreen.TopNews.route) {
-        TopNews(navController = navController, articles)
+        TopNews(navController = navController, articles, newsManager.query, newsManager)
     }
 
     composable(BottomMenuScreen.Categories.route) {

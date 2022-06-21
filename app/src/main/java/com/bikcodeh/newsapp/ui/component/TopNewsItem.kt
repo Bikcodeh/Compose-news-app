@@ -42,13 +42,15 @@ fun TopNewsItem(article: TopNewsArticle, onItemClick: () -> Unit) {
                 .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 6.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = MockData.stringToDate(article.publishedAt ?: String()).getTimeAgo(),
-                color = Color.White,
-                fontWeight = FontWeight.SemiBold,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis
-            )
+            article.publishedAt?.let {
+                Text(
+                    text = MockData.stringToDate(article.publishedAt).getTimeAgo(),
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
             Text(
                 text = article.title ?: String(),
                 color = Color.White,

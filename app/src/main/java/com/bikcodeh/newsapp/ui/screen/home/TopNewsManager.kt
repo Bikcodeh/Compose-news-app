@@ -38,7 +38,17 @@ class NewsManager {
             _getArticleBySource
         }
 
+    private val _searchedNews =
+        mutableStateOf(TopNewsResponse())
+
+    val searchedNews: MutableState<TopNewsResponse>
+        @Composable get() = remember {
+            _searchedNews
+        }
+
     val sourceName = mutableStateOf("abc-news")
+
+    val query = mutableStateOf("")
 
     init {
         getArticles()
@@ -97,6 +107,27 @@ class NewsManager {
                 if (response.isSuccessful) {
                     _getArticleBySource.value = response.body()!!
                     Log.d("Category", "${_getArticleBySource.value}")
+                } else {
+                    Log.d("error", "${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<TopNewsResponse>, t: Throwable) {
+                Log.d("error", "${t.printStackTrace()}")
+            }
+        })
+    }
+
+    fun getSearchArticles(query: String) {
+        val service = Api.retrofitService.getArticles(query)
+        service.enqueue(object : Callback<TopNewsResponse> {
+            override fun onResponse(
+                call: Call<TopNewsResponse>,
+                response: Response<TopNewsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    _searchedNews.value = response.body()!!
+                    Log.d("Category", "${_searchedNews.value}")
                 } else {
                     Log.d("error", "${response.errorBody()}")
                 }
