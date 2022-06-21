@@ -23,10 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
-import com.bikcodeh.newsapp.ui.screen.home.NewsManager
+import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
-fun SourceScreen(newsManager: NewsManager) {
+fun SourceScreen(mainViewModel: MainViewModel) {
 
     val items = listOf(
         "TechCrunch" to "techcrunch",
@@ -37,9 +37,16 @@ fun SourceScreen(newsManager: NewsManager) {
         "TheVerge" to "the-verge"
     )
 
+    val sourceName by mainViewModel.sourceName
+    val mainState by mainViewModel.mainState.collectAsState()
+
+    LaunchedEffect(key1 = sourceName) {
+        mainViewModel.getArticlesBySource()
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "${newsManager.sourceName.value} Source") },
+            TopAppBar(title = { Text(text = "$sourceName Source") },
                 actions = {
                     var menuExpanded by remember { mutableStateOf(false) }
                     IconButton(onClick = { menuExpanded = true }) {
@@ -52,7 +59,7 @@ fun SourceScreen(newsManager: NewsManager) {
                         ) {
                             items.forEach {
                                 DropdownMenuItem(onClick = {
-                                    newsManager.sourceName.value = it.second
+                                    mainViewModel.updateSource(it.second)
                                     menuExpanded = false
                                 }) {
                                     Text(text = it.first)
@@ -63,9 +70,7 @@ fun SourceScreen(newsManager: NewsManager) {
                 })
         }
     ) {
-        newsManager.getArticlesBySource()
-        val articles = newsManager.getArticleBySource.value
-        SourceContent(articles = articles.articles ?: listOf())
+        SourceContent(articles = mainState.articlesBySource)
     }
 }
 
@@ -94,7 +99,9 @@ fun SourceContent(articles: List<TopNewsArticle>) {
             Card(
                 backgroundColor = colorResource(id = R.color.purple_700),
                 elevation = 6.dp,
-                modifier = Modifier.height(200.dp)
+                modifier = Modifier
+                    .height(200.dp)
+                    .padding(vertical = 4.dp, horizontal = 16.dp)
             ) {
                 Column(
                     verticalArrangement = Arrangement.SpaceBetween,

@@ -1,5 +1,7 @@
 package com.bikcodeh.newsapp.ui.screen.viewmodel
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
@@ -24,6 +26,9 @@ class MainViewModel @Inject constructor(
     private val _mainState = MutableStateFlow(NewsUiState())
     val mainState: StateFlow<NewsUiState>
         get() = _mainState.asStateFlow()
+
+    val searchQuery: MutableState<String> = mutableStateOf("")
+    val sourceName: MutableState<String> = mutableStateOf("abc-news")
 
     fun getTopArticles() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -80,11 +85,73 @@ class MainViewModel @Inject constructor(
         _mainState.update { it.copy(selectedCategory = newCategory) }
     }
 
+    fun getSearchArticles(query: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getSearchArticles(query)
+                .fold(
+                    onSuccess = {
+                        _mainState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false,
+                                searchedNews = it?.articles ?: emptyList()
+                            )
+                        }
+                    },
+                    onFailure = {
+                        _mainState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false,
+                                error = it
+                            )
+                        }
+                    }
+                )
+        }
+    }
+
+    fun getArticlesBySource() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getArticlesBySource(sourceName.value)
+                .fold(
+                    onSuccess = {
+                        _mainState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false,
+                                articlesBySource = it?.articles ?: emptyList()
+                            )
+                        }
+                    },
+                    onFailure = {
+                        _mainState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false,
+                                error = it
+                            )
+                        }
+                    }
+                )
+        }
+    }
+
+    fun updateQuery(query: String) {
+        searchQuery.value = query
+    }
+
+    fun updateSource(source: String) {
+        sourceName.value = source
+    }
+
+    fun clearSearch() {
+        _mainState.update { currentState -> currentState.copy(searchedNews = emptyList()) }
+    }
+
     data class NewsUiState(
         val isLoading: Boolean = false,
         val articles: List<TopNewsArticle> = emptyList(),
         val error: String? = null,
         val articlesByCategory: List<TopNewsArticle> = emptyList(),
-        val selectedCategory: ArticleCategory? = null
+        val selectedCategory: ArticleCategory? = null,
+        val searchedNews: List<TopNewsArticle> = emptyList(),
+        val articlesBySource: List<TopNewsArticle> = emptyList()
     )
 }

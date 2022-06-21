@@ -26,7 +26,6 @@ import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.domain.model.MockData
 import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
 import com.bikcodeh.newsapp.domain.model.getAllArticleCategory
-import com.bikcodeh.newsapp.ui.screen.home.NewsManager
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 import com.skydoves.landscapist.coil.CoilImage
 

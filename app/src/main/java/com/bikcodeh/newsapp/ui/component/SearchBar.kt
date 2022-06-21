@@ -11,8 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
@@ -22,11 +20,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bikcodeh.newsapp.data.remote.Api
-import com.bikcodeh.newsapp.ui.screen.home.NewsManager
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
-fun SearchBar(query: MutableState<String>, newsManager: NewsManager) {
+fun SearchBar(mainViewModel: MainViewModel) {
+
+    val query = mainViewModel.searchQuery
+
     val localFocusManager = LocalFocusManager.current
     Card(
         elevation = 6.dp,
@@ -37,8 +38,9 @@ fun SearchBar(query: MutableState<String>, newsManager: NewsManager) {
         backgroundColor = MaterialTheme.colors.primary
     ) {
         TextField(
-            value = query.value, onValueChange = {
-                query.value = it
+            value = query.value,
+            onValueChange = {
+                mainViewModel.updateQuery(it)
             },
             modifier = Modifier.fillMaxWidth(),
             label = {
@@ -53,7 +55,10 @@ fun SearchBar(query: MutableState<String>, newsManager: NewsManager) {
             },
             trailingIcon = {
                 if (query.value.isNotEmpty()) {
-                    IconButton(onClick = { query.value = "" }) {
+                    IconButton(onClick = {
+                        query.value = ""
+                        mainViewModel.clearSearch()
+                    }) {
                         Icon(Icons.Default.Close, contentDescription = null, tint = Color.White)
                     }
                 }
@@ -65,7 +70,7 @@ fun SearchBar(query: MutableState<String>, newsManager: NewsManager) {
             keyboardActions = KeyboardActions(
                 onSearch = {
                     if (query.value.isNotEmpty()) {
-                        newsManager.getSearchArticles(query.value)
+                        mainViewModel.getSearchArticles(query.value)
                     }
                     localFocusManager.clearFocus()
                 }
@@ -79,5 +84,5 @@ fun SearchBar(query: MutableState<String>, newsManager: NewsManager) {
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
-    SearchBar(query = mutableStateOf(""), newsManager = NewsManager(Api.retrofitService))
+    SearchBar(viewModel())
 }
