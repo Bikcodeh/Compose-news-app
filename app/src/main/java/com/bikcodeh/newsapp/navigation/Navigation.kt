@@ -10,6 +10,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.ui.screen.detail.DetailScreen
 import com.bikcodeh.newsapp.ui.screen.home.NewsManager
 import com.bikcodeh.newsapp.ui.screen.home.bottomNavigation
@@ -21,8 +22,10 @@ fun Navigation(
     newsManager: NewsManager = NewsManager(),
     paddingValues: PaddingValues
 ) {
-    val articles = newsManager.newsResponse.value.articles
-    articles?.let {
+    val articles = mutableListOf(TopNewsArticle())
+    articles.addAll(newsManager.newsResponse.value.articles ?: listOf())
+
+    articles.let {
         NavHost(
             navController = navController,
             startDestination = BottomMenuScreen.TopNews.route,
@@ -37,6 +40,13 @@ fun Navigation(
                 })
             ) { navBackStackEntry ->
                 val index = navBackStackEntry.arguments?.getInt(Screen.Detail.NAV_ARG_KEY)
+                if (newsManager.query.value.isNotEmpty()) {
+                    articles.clear()
+                    articles.addAll(newsManager.searchedNews.value.articles ?: listOf())
+                } else {
+                    articles.clear()
+                    articles.addAll(newsManager.newsResponse.value.articles ?: listOf())
+                }
                 index?.let {
                     DetailScreen(articles[index], scrollState, navController)
                 }
