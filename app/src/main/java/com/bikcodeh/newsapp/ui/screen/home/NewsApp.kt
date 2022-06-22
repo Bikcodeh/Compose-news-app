@@ -44,9 +44,6 @@ fun NavGraphBuilder.bottomNavigation(
     }
 
     composable(BottomMenuScreen.Categories.route) {
-        mainViewModel.onSelectedCategoryChanged("business")
-        mainViewModel.getArticlesByCategory("business")
-
         CategoriesScreen(mainViewModel = mainViewModel, onFetchCategory = {
             mainViewModel.onSelectedCategoryChanged(it)
             mainViewModel.getArticlesByCategory(it)
