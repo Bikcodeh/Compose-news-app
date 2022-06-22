@@ -2,4 +2,8 @@
     <string name="app_name">NewsApp</string>
     <string name="top_news_title">Top News</string>
     <string name="detail_screen_title">Detail</string>
+    <string name="error_connectivity">Connectivity Error</string>
+    <string name="error_server">Internal server error: %1$d</string>
+    <string name="error_unexpected">An unexpected error happened, try later please</string>
+    <string name="loading">Loading…</string>
 </resources>

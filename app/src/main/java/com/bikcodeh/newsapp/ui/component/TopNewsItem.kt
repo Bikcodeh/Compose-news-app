@@ -33,8 +33,8 @@ fun TopNewsItem(article: TopNewsArticle, onItemClick: () -> Unit) {
             imageModel = article.urlToImage,
             contentDescription = "",
             contentScale = ContentScale.FillBounds,
-            error = ImageBitmap.imageResource(R.drawable.breaking_news),
-            placeHolder = ImageBitmap.imageResource(R.drawable.breaking_news)
+            error = ImageBitmap.imageResource(R.drawable.ic_broken_image),
+            placeHolder = ImageBitmap.imageResource(R.drawable.ic_broken_image)
         )
         Column(
             modifier = Modifier

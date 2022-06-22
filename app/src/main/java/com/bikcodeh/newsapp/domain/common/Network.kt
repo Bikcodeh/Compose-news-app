@@ -10,7 +10,7 @@ suspend fun <T> makeSafeRequest(
         try {
             Result.Success(execute())
         } catch (e: Exception) {
-            Result.Error(e.message)
+            Result.Error(e)
         }
     }
 }

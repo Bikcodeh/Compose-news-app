@@ -23,6 +23,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
+import com.bikcodeh.newsapp.domain.common.toError
+import com.bikcodeh.newsapp.ui.component.ErrorScreen
+import com.bikcodeh.newsapp.ui.component.LoadingScreen
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
@@ -42,6 +45,10 @@ fun SourceScreen(mainViewModel: MainViewModel) {
 
     LaunchedEffect(key1 = sourceName) {
         mainViewModel.getArticlesBySource()
+    }
+
+    if (mainState.isLoading) {
+        LoadingScreen()
     }
 
     Scaffold(
@@ -70,7 +77,9 @@ fun SourceScreen(mainViewModel: MainViewModel) {
                 })
         }
     ) {
-        SourceContent(articles = mainState.articlesBySource)
+        mainState.error?.let {
+            ErrorScreen(error = it.toError())
+        } ?: SourceContent(articles = mainState.articlesBySource)
     }
 }
 

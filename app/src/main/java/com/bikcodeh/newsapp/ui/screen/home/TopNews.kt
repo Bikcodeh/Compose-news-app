@@ -14,7 +14,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
+import com.bikcodeh.newsapp.domain.common.toError
 import com.bikcodeh.newsapp.navigation.Screen
+import com.bikcodeh.newsapp.ui.component.ErrorScreen
+import com.bikcodeh.newsapp.ui.component.LoadingScreen
 import com.bikcodeh.newsapp.ui.component.SearchBar
 import com.bikcodeh.newsapp.ui.component.TopNewsItem
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
@@ -26,6 +29,14 @@ fun TopNews(
     mainViewModel: MainViewModel
 ) {
     val mainState by mainViewModel.mainState.collectAsState()
+
+    if (mainState.isLoading) {
+        LoadingScreen()
+    }
+
+    mainState.error?.let {
+        ErrorScreen(error = it.toError())
+    }
 
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         SearchBar(mainViewModel)

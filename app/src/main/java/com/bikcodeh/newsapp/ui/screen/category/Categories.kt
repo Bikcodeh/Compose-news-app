@@ -11,6 +11,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -23,17 +24,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
+import com.bikcodeh.newsapp.domain.common.toError
 import com.bikcodeh.newsapp.domain.model.MockData
 import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
 import com.bikcodeh.newsapp.domain.model.getAllArticleCategory
+import com.bikcodeh.newsapp.ui.component.ErrorScreen
+import com.bikcodeh.newsapp.ui.component.LoadingScreen
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun CategoriesScreen(onFetchCategory: (String) -> Unit, mainViewModel: MainViewModel) {
     val tabItems = getAllArticleCategory()
-
     val mainState by mainViewModel.mainState.collectAsState()
+
+    LaunchedEffect(key1 = mainState.selectedCategory) {
+        mainViewModel.getArticlesByCategory("business")
+    }
+
+    if (mainState.isLoading) {
+        LoadingScreen()
+    }
+
+    mainState.error?.let {
+        ErrorScreen(error = it.toError())
+    }
 
     Column() {
         LazyRow() {
@@ -92,8 +107,8 @@ fun ArticleContent(articles: List<TopNewsArticle>, modifier: Modifier = Modifier
                     CoilImage(
                         imageModel = article.urlToImage,
                         modifier = Modifier.size(100.dp),
-                        placeHolder = painterResource(id = R.drawable.breaking_news),
-                        error = painterResource(id = R.drawable.breaking_news)
+                        placeHolder = painterResource(id = R.drawable.ic_broken_image),
+                        error = painterResource(id = R.drawable.ic_broken_image)
                     )
                     Column(modifier = Modifier.padding(8.dp)) {
                         Text(

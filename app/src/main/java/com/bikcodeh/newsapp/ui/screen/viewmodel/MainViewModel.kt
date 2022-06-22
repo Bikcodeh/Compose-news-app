@@ -148,7 +148,7 @@ class MainViewModel @Inject constructor(
     data class NewsUiState(
         val isLoading: Boolean = false,
         val articles: List<TopNewsArticle> = emptyList(),
-        val error: String? = null,
+        val error: Exception? = null,
         val articlesByCategory: List<TopNewsArticle> = emptyList(),
         val selectedCategory: ArticleCategory? = null,
         val searchedNews: List<TopNewsArticle> = emptyList(),
