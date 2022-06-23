@@ -134,6 +134,23 @@ class MainViewModelTest {
     }
 
     @Test
-    fun clearSearch() {
+    fun clearSearch() = runTest {
+        val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "Searched")))
+        coEvery { repository.getSearchArticles("data") } returns Result.Success(response)
+
+        mainViewModel.getSearchArticles("data")
+
+        mainViewModel.mainState.test {
+            val data = awaitItem()
+            assertThat(data.searchedNews.count()).isEqualTo(1)
+        }
+
+        mainViewModel.clearSearch()
+
+        mainViewModel.mainState.test {
+            val data = awaitItem()
+            assertThat(data.searchedNews.count()).isEqualTo(0)
+        }
+        coVerify { repository.getSearchArticles("data") }
     }
 }
