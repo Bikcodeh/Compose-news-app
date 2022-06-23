@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.data.repository.Repository
+import com.bikcodeh.newsapp.di.IoDispatcher
 import com.bikcodeh.newsapp.domain.common.fold
 import com.bikcodeh.newsapp.domain.model.ArticleCategory
 import com.bikcodeh.newsapp.domain.model.getArticleCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +22,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: Repository,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _mainState = MutableStateFlow(NewsUiState())
@@ -31,7 +34,7 @@ class MainViewModel @Inject constructor(
     val sourceName: MutableState<String> = mutableStateOf("abc-news")
 
     fun getTopArticles() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _mainState.update { currentState -> currentState.copy(isLoading = true) }
             repository.getArticles()
                 .fold(
@@ -56,7 +59,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getArticlesByCategory(category: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _mainState.update { it.copy(isLoading = true) }
             repository.getArticlesByCategory(category)
                 .fold(
@@ -86,7 +89,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getSearchArticles(query: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             repository.getSearchArticles(query)
                 .fold(
                     onSuccess = {
@@ -110,7 +113,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getArticlesBySource() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             repository.getArticlesBySource(sourceName.value)
                 .fold(
                     onSuccess = {
