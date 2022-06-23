@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -112,7 +113,7 @@ fun ArticleContent(articles: List<TopNewsArticle>, modifier: Modifier = Modifier
                     )
                     Column(modifier = Modifier.padding(8.dp)) {
                         Text(
-                            text = article.title ?: "Not Available", fontWeight = FontWeight.Bold,
+                            text = article.title ?: stringResource(id = R.string.not_available), fontWeight = FontWeight.Bold,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -120,7 +121,7 @@ fun ArticleContent(articles: List<TopNewsArticle>, modifier: Modifier = Modifier
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = article.author ?: "Not Available")
+                            Text(text = article.author ?: stringResource(id = R.string.not_available))
                             article.publishedAt?.let {
                                 Text(text = MockData.stringToDate(article.publishedAt).getTimeAgo())
                             }

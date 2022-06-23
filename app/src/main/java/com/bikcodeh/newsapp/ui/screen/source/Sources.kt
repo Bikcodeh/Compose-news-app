@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -102,7 +103,7 @@ fun SourceContent(articles: List<TopNewsArticle>) {
                         textDecoration = TextDecoration.Underline
                     )
                 ) {
-                    append("Read Full Article Here")
+                    append(stringResource(id = R.string.read_article))
                 }
             }
             Card(
@@ -119,13 +120,13 @@ fun SourceContent(articles: List<TopNewsArticle>) {
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = article.title ?: "Not available",
+                        text = article.title ?: stringResource(id = R.string.not_available),
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                     Text(
-                        text = article.description ?: "Not available",
+                        text = article.description ?: stringResource(id = R.string.not_available),
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )

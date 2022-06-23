@@ -6,4 +6,8 @@
     <string name="error_server">Internal server error: %1$d</string>
     <string name="error_unexpected">An unexpected error happened, try later please</string>
     <string name="loading">Loading…</string>
+    <string name="not_available">Not available</string>
+    <string name="back">Back</string>
+    <string name="author">Author</string>
+    <string name="read_article">Read Full Article Here</string>
 </resources>

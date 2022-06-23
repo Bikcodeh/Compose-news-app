@@ -55,19 +55,19 @@ fun DetailScreen(article: TopNewsArticle, scrollState: ScrollState, navControlle
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                InfoWithIcon(icon = Icons.Default.Edit, info = article.author ?: "Not available")
+                InfoWithIcon(icon = Icons.Default.Edit, info = article.author ?: stringResource(id = R.string.not_available))
                 InfoWithIcon(
                     icon = Icons.Default.DateRange,
                     info = MockData.stringToDate(article.publishedAt!!).getTimeAgo()
                 )
             }
             Text(
-                text = article.title ?: "Not available",
+                text = article.title ?: stringResource(id = R.string.not_available),
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             Text(
-                text = article.description ?: "Not available",
+                text = article.description ?: stringResource(id = R.string.not_available),
                 modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
             )
         }
@@ -79,7 +79,7 @@ fun DetailTopBar(onBackPressed: () -> Unit = {}) {
     TopAppBar(title = { Text(text = stringResource(id = R.string.detail_screen_title)) },
         navigationIcon = {
             IconButton(onClick = { onBackPressed() }) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back))
             }
         })
 }
@@ -88,7 +88,7 @@ fun DetailTopBar(onBackPressed: () -> Unit = {}) {
 fun InfoWithIcon(icon: ImageVector, info: String) {
     Row {
         Icon(
-            icon, contentDescription = "Author", modifier = Modifier.padding(end = 8.dp),
+            icon, contentDescription = stringResource(id = R.string.author), modifier = Modifier.padding(end = 8.dp),
             colorResource(id = R.color.purple_500)
         )
         Text(text = info)
