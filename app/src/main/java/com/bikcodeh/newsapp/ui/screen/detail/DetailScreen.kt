@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,8 +46,8 @@ fun DetailScreen(article: TopNewsArticle, scrollState: ScrollState, navControlle
                 imageModel = article.urlToImage,
                 contentDescription = "",
                 contentScale = ContentScale.FillBounds,
-                error = ImageBitmap.imageResource(R.drawable.ic_broken_image),
-                placeHolder = ImageBitmap.imageResource(R.drawable.ic_broken_image)
+                error = painterResource(id = R.drawable.ic_broken_image),
+                placeHolder = painterResource(id = R.drawable.ic_broken_image)
             )
             Row(
                 modifier = Modifier

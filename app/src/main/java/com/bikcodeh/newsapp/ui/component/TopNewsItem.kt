@@ -6,9 +6,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,8 +32,8 @@ fun TopNewsItem(article: TopNewsArticle, onItemClick: () -> Unit) {
             imageModel = article.urlToImage,
             contentDescription = "",
             contentScale = ContentScale.FillBounds,
-            error = ImageBitmap.imageResource(R.drawable.ic_broken_image),
-            placeHolder = ImageBitmap.imageResource(R.drawable.ic_broken_image)
+            error = painterResource(id = R.drawable.ic_broken_image),
+            placeHolder = painterResource(id = R.drawable.ic_broken_image)
         )
         Column(
             modifier = Modifier
