@@ -34,8 +34,8 @@ class MainViewModel @Inject constructor(
     val sourceName: MutableState<String> = mutableStateOf("abc-news")
 
     fun getTopArticles() {
+        _mainState.update { currentState -> currentState.copy(isLoading = true) }
         viewModelScope.launch(dispatcher) {
-            _mainState.update { currentState -> currentState.copy(isLoading = true) }
             repository.getArticles()
                 .fold(
                     onSuccess = {

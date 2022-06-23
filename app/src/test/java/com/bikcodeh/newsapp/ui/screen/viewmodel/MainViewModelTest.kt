@@ -11,10 +11,14 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.runTest
-import org.junit.After
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,8 +32,6 @@ class MainViewModelTest {
 
     lateinit var mainViewModel: MainViewModel
 
-    private val dispatcher = UnconfinedTestDispatcher()
-
     @MockK(relaxed = true)
     lateinit var repository: Repository
 
@@ -38,7 +40,7 @@ class MainViewModelTest {
         MockKAnnotations.init(this)
         mainViewModel = MainViewModel(
             repository,
-            dispatcher
+            UnconfinedTestDispatcher()
         )
     }
 
@@ -74,20 +76,28 @@ class MainViewModelTest {
     fun `getTopArticles should return an article`() = runTest {
         /** given */
         val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "OK")))
-        coEvery { repository.getArticles() } returns Result.Success(response)
+        coEvery { repository.getArticles() } answers   {
+            Result.Success(response)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
 
         /** when */
         mainViewModel.getTopArticles()
 
         /** then */
-        mainViewModel.mainState.test {
-            val data = awaitItem()
-            assertThat(data.isLoading).isFalse()
-            assertThat(data.articles.first().author).isEqualTo("OK")
-            assertThat(data.articles.count()).isEqualTo(1)
-        }
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].articles.count()).isEqualTo(1)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isNull()
 
         coVerify(exactly = 1) { repository.getArticles() }
+        job.cancel()
     }
 
     @Test
