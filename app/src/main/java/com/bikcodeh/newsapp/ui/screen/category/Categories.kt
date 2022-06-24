@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.domain.common.toError
-import com.bikcodeh.newsapp.domain.model.MockData
-import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
+import com.bikcodeh.newsapp.ui.util.Util
+import com.bikcodeh.newsapp.ui.util.Util.getTimeAgo
 import com.bikcodeh.newsapp.domain.model.getAllArticleCategory
 import com.bikcodeh.newsapp.ui.component.ErrorScreen
 import com.bikcodeh.newsapp.ui.component.LoadingScreen
@@ -123,7 +123,7 @@ fun ArticleContent(articles: List<TopNewsArticle>, modifier: Modifier = Modifier
                         ) {
                             Text(text = article.author ?: stringResource(id = R.string.not_available))
                             article.publishedAt?.let {
-                                Text(text = MockData.stringToDate(article.publishedAt).getTimeAgo())
+                                Text(text = Util.stringToDate(article.publishedAt).getTimeAgo())
                             }
                         }
                     }

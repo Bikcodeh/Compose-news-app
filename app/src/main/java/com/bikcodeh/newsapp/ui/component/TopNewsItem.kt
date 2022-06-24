@@ -14,8 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
-import com.bikcodeh.newsapp.domain.model.MockData
-import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
+import com.bikcodeh.newsapp.ui.util.Util
+import com.bikcodeh.newsapp.ui.util.Util.getTimeAgo
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
@@ -43,7 +43,7 @@ fun TopNewsItem(article: TopNewsArticle, onItemClick: () -> Unit) {
         ) {
             article.publishedAt?.let {
                 Text(
-                    text = MockData.stringToDate(article.publishedAt).getTimeAgo(),
+                    text = Util.stringToDate(article.publishedAt).getTimeAgo(),
                     color = Color.White,
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 3,

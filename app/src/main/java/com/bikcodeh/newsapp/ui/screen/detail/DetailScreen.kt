@@ -12,11 +12,9 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,8 +24,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
-import com.bikcodeh.newsapp.domain.model.MockData
-import com.bikcodeh.newsapp.domain.model.MockData.getTimeAgo
+import com.bikcodeh.newsapp.ui.util.Util
+import com.bikcodeh.newsapp.ui.util.Util.getTimeAgo
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
@@ -59,7 +57,7 @@ fun DetailScreen(article: TopNewsArticle, scrollState: ScrollState, navControlle
                 InfoWithIcon(icon = Icons.Default.Edit, info = article.author ?: stringResource(id = R.string.not_available))
                 InfoWithIcon(
                     icon = Icons.Default.DateRange,
-                    info = MockData.stringToDate(article.publishedAt!!).getTimeAgo()
+                    info = Util.stringToDate(article.publishedAt!!).getTimeAgo()
                 )
             }
             Text(
