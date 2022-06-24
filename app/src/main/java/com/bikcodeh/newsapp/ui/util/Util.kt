@@ -1,10 +1,10 @@
-package com.bikcodeh.newsapp.domain.model
+package com.bikcodeh.newsapp.ui.util
 
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import java.util.*
 
-object MockData {
+object Util {
     fun Date.getTimeAgo(): String {
         val calendar = Calendar.getInstance()
         calendar.time = this

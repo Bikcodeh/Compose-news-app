@@ -13,7 +13,25 @@ class TopNewsRepositoryImpl @Inject constructor(
 
     override suspend fun getArticles(): Result<TopNewsResponse> {
         return makeSafeRequest {
-            TopNewsResponse()
+            newsService.getTopArticles("us")
+        }
+    }
+
+    override suspend fun getArticlesByCategory(category: String): Result<TopNewsResponse> {
+        return makeSafeRequest {
+            newsService.getArticlesByCategory(category)
+        }
+    }
+
+    override suspend fun getSearchArticles(query: String): Result<TopNewsResponse> {
+        return makeSafeRequest {
+            newsService.getArticles(query)
+        }
+    }
+
+    override suspend fun getArticlesBySource(source: String): Result<TopNewsResponse> {
+        return makeSafeRequest {
+            newsService.getArticlesBySources(source)
         }
     }
 }

@@ -5,12 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
-import com.bikcodeh.newsapp.data.repository.Repository
+import com.bikcodeh.newsapp.di.IoDispatcher
 import com.bikcodeh.newsapp.domain.common.fold
 import com.bikcodeh.newsapp.domain.model.ArticleCategory
 import com.bikcodeh.newsapp.domain.model.getArticleCategory
+import com.bikcodeh.newsapp.domain.repository.TopNewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: TopNewsRepository,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _mainState = MutableStateFlow(NewsUiState())
@@ -31,15 +33,16 @@ class MainViewModel @Inject constructor(
     val sourceName: MutableState<String> = mutableStateOf("abc-news")
 
     fun getTopArticles() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _mainState.update { currentState -> currentState.copy(isLoading = true) }
+        _mainState.update { currentState -> currentState.copy(isLoading = true) }
+        viewModelScope.launch(dispatcher) {
             repository.getArticles()
                 .fold(
                     onSuccess = {
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                articles = it?.articles ?: emptyList()
+                                articles = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     },
@@ -56,8 +59,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun getArticlesByCategory(category: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _mainState.update { it.copy(isLoading = true) }
+        _mainState.update { it.copy(isLoading = true) }
+        viewModelScope.launch(dispatcher) {
             repository.getArticlesByCategory(category)
                 .fold(
                     onFailure = {
@@ -72,7 +75,8 @@ class MainViewModel @Inject constructor(
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                articlesByCategory = it?.articles ?: emptyList()
+                                articlesByCategory = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     }
@@ -86,14 +90,16 @@ class MainViewModel @Inject constructor(
     }
 
     fun getSearchArticles(query: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        _mainState.update { currentState -> currentState.copy(isLoading = true) }
+        viewModelScope.launch(dispatcher) {
             repository.getSearchArticles(query)
                 .fold(
                     onSuccess = {
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                searchedNews = it?.articles ?: emptyList()
+                                searchedNews = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     },
@@ -110,14 +116,16 @@ class MainViewModel @Inject constructor(
     }
 
     fun getArticlesBySource() {
-        viewModelScope.launch(Dispatchers.IO) {
+        _mainState.update { currentState -> currentState.copy(isLoading = true) }
+        viewModelScope.launch(dispatcher) {
             repository.getArticlesBySource(sourceName.value)
                 .fold(
                     onSuccess = {
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                articlesBySource = it?.articles ?: emptyList()
+                                articlesBySource = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     },
