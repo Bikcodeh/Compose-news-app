@@ -5,20 +5,18 @@ import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.data.model.TopNewsResponse
 import com.bikcodeh.newsapp.data.repository.Repository
 import com.bikcodeh.newsapp.domain.common.Result
+import com.bikcodeh.newsapp.domain.model.ArticleCategory
 import com.bikcodeh.newsapp.util.MainCoroutineRule
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.*
-import org.junit.Assert.assertEquals
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -76,7 +74,7 @@ class MainViewModelTest {
     fun `getTopArticles should return an article`() = runTest {
         /** given */
         val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "OK")))
-        coEvery { repository.getArticles() } answers   {
+        coEvery { repository.getArticles() } answers {
             Result.Success(response)
         }
 
@@ -120,36 +118,207 @@ class MainViewModelTest {
     }
 
     @Test
-    fun getArticlesByCategory() {
+    fun getArticlesByCategory() = runTest {
+        /** Given */
+        val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "OK")))
+        coEvery { repository.getArticlesByCategory("action") } answers {
+            Result.Success(response)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        /** When */
+        mainViewModel.getArticlesByCategory("action")
+
+        /** Then */
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].articlesByCategory.count()).isEqualTo(1)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isNull()
+
+        coVerify(exactly = 1) { repository.getArticlesByCategory("action") }
+        job.cancel()
     }
 
     @Test
-    fun onSelectedCategoryChanged() {
+    fun `getArticlesByCategory should return a error`() = runTest {
+        /** Given */
+        val error = Exception()
+        coEvery { repository.getArticlesByCategory("action") } answers {
+            Result.Error(error)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        /** When */
+        mainViewModel.getArticlesByCategory("action")
+
+        /** Then */
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].articlesByCategory.count()).isEqualTo(0)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isEqualTo(error)
+
+        coVerify(exactly = 1) { repository.getArticlesByCategory("action") }
+        job.cancel()
     }
 
     @Test
-    fun getSearchArticles() {
+    fun onSelectedCategoryChanged() = runTest {
+        /**  Given */
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        val expected = ArticleCategory.TECHNOLOGY.categoryName
+
+        /**  When */
+        mainViewModel.onSelectedCategoryChanged(expected)
+
+        /**  Then */
+        assertThat(
+            results[1].selectedCategory?.categoryName
+        ).isEqualTo(expected)
+
+        job.cancel()
     }
 
     @Test
-    fun getArticlesBySource() {
+    fun getSearchArticles() = runTest {
+        /** Given */
+        val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "OK")))
+        coEvery { repository.getSearchArticles("business") } answers {
+            Result.Success(response)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        /**  When */
+        mainViewModel.getSearchArticles("business")
+
+        /**  Then */
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].searchedNews.count()).isEqualTo(1)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isNull()
+
+        coVerify(exactly = 1) { repository.getSearchArticles("business") }
+        job.cancel()
     }
 
     @Test
-    fun updateQuery() {
+    fun getSearchArticlesError() = runTest {
+        /** Given */
+        val error = Exception()
+        coEvery { repository.getSearchArticles("business") } answers {
+            Result.Error(error)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        /**  When */
+        mainViewModel.getSearchArticles("business")
+
+        /**  Then */
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].searchedNews.count()).isEqualTo(0)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isNotNull()
+        assertThat(results[2].error).isEqualTo(error)
+
+        coVerify(exactly = 1) { repository.getSearchArticles("business") }
+        job.cancel()
     }
 
     @Test
-    fun updateSource() {
+    fun getArticlesBySource() = runTest {
+        /** Given */
+        val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "OK")))
+        coEvery { repository.getArticlesBySource("abc-news") } answers {
+            Result.Success(response)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        /**  When */
+        mainViewModel.getArticlesBySource()
+
+        /**  Then */
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].articlesBySource.count()).isEqualTo(1)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isNull()
+
+        coVerify(exactly = 1) { repository.getArticlesBySource("abc-news") }
+        job.cancel()
+    }
+
+    @Test
+    fun getArticlesBySourceError() = runTest {
+        /** Given */
+        val error = Exception()
+        coEvery { repository.getArticlesBySource("abc-news") } answers {
+            Result.Error(error)
+        }
+
+        val results = arrayListOf<MainViewModel.NewsUiState>()
+
+        val job = launch(UnconfinedTestDispatcher()) {
+            mainViewModel.mainState.toList(results)
+        }
+
+        /**  When */
+        mainViewModel.getArticlesBySource()
+
+        /**  Then */
+        assertThat(results[0].isLoading).isFalse()
+        assertThat(results[1].isLoading).isTrue()
+        assertThat(results[2].articlesBySource.count()).isEqualTo(0)
+        assertThat(results[2].isLoading).isFalse()
+        assertThat(results[2].error).isEqualTo(error)
+        assertThat(results[2].error).isNotNull()
+
+        coVerify(exactly = 1) { repository.getArticlesBySource("abc-news") }
+        job.cancel()
     }
 
     @Test
     fun clearSearch() = runTest {
+        /**  Given */
         val response = TopNewsResponse(articles = listOf(TopNewsArticle(author = "Searched")))
         coEvery { repository.getSearchArticles("data") } returns Result.Success(response)
 
+        /**  When */
         mainViewModel.getSearchArticles("data")
 
+        /**  Then */
         mainViewModel.mainState.test {
             val data = awaitItem()
             assertThat(data.searchedNews.count()).isEqualTo(1)

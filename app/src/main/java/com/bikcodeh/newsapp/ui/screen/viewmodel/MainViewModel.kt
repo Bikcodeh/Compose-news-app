@@ -59,8 +59,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun getArticlesByCategory(category: String) {
+        _mainState.update { it.copy(isLoading = true) }
         viewModelScope.launch(dispatcher) {
-            _mainState.update { it.copy(isLoading = true) }
             repository.getArticlesByCategory(category)
                 .fold(
                     onFailure = {
@@ -89,6 +89,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getSearchArticles(query: String) {
+        _mainState.update { currentState -> currentState.copy(isLoading = true) }
         viewModelScope.launch(dispatcher) {
             repository.getSearchArticles(query)
                 .fold(
@@ -113,6 +114,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getArticlesBySource() {
+        _mainState.update { currentState -> currentState.copy(isLoading = true) }
         viewModelScope.launch(dispatcher) {
             repository.getArticlesBySource(sourceName.value)
                 .fold(
