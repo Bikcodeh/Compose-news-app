@@ -47,13 +47,14 @@ class TopNewsRepositoryImplTest {
 
     @Test
     fun getArticles() = runTest {
+        /** Given */
         val expected = TopNewsResponse(
             status = "OK",
             totalResults = 1,
             articles = listOf(TopNewsArticle(author = "test"))
         )
-        /** Given */
         coEvery { newsService.getTopArticles("us") } answers { expected }
+
         /** When */
         val result = topNewsRepository.getArticles()
 
@@ -67,9 +68,9 @@ class TopNewsRepositoryImplTest {
 
     @Test
     fun `getArticles should return a error result catching exception`() = runTest {
-        val error = Exception("exception")
         /** Given */
         coEvery { newsService.getTopArticles("us") } throws error
+
         /** When */
         val result = topNewsRepository.getArticles()
 
@@ -84,6 +85,7 @@ class TopNewsRepositoryImplTest {
         val error = UnknownHostException("without_host")
         /** Given */
         coEvery { newsService.getTopArticles("us") } throws error
+
         /** When */
         val result = topNewsRepository.getArticles()
 
@@ -97,12 +99,8 @@ class TopNewsRepositoryImplTest {
     @Test
     fun getArticlesByCategory() = runTest {
         /** Given */
-        val expected = TopNewsResponse(
-            status = "OK",
-            totalResults = 1,
-            articles = listOf(TopNewsArticle(author = "test"))
-        )
         coEvery { newsService.getArticlesByCategory("business") } answers { expected }
+
         /** When */
         val result = topNewsRepository.getArticlesByCategory("business")
 
@@ -118,6 +116,7 @@ class TopNewsRepositoryImplTest {
     fun `getArticlesByCategory should return a error result`() = runTest {
         /** Given */
         coEvery { newsService.getArticlesByCategory("business") } throws error
+
         /** When */
         val result = topNewsRepository.getArticlesByCategory("business")
 
@@ -132,6 +131,7 @@ class TopNewsRepositoryImplTest {
     fun getSearchArticles() = runTest {
         /** Given */
         coEvery { newsService.getArticles("business") } answers { expected }
+
         /** When */
         val result = topNewsRepository.getSearchArticles("business")
 
