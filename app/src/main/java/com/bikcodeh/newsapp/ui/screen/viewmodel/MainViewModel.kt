@@ -5,14 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
-import com.bikcodeh.newsapp.data.repository.Repository
 import com.bikcodeh.newsapp.di.IoDispatcher
 import com.bikcodeh.newsapp.domain.common.fold
 import com.bikcodeh.newsapp.domain.model.ArticleCategory
 import com.bikcodeh.newsapp.domain.model.getArticleCategory
+import com.bikcodeh.newsapp.domain.repository.TopNewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: Repository,
+    private val repository: TopNewsRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
@@ -42,7 +41,8 @@ class MainViewModel @Inject constructor(
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                articles = it?.articles ?: emptyList()
+                                articles = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     },
@@ -75,7 +75,8 @@ class MainViewModel @Inject constructor(
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                articlesByCategory = it?.articles ?: emptyList()
+                                articlesByCategory = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     }
@@ -97,7 +98,8 @@ class MainViewModel @Inject constructor(
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                searchedNews = it?.articles ?: emptyList()
+                                searchedNews = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     },
@@ -122,7 +124,8 @@ class MainViewModel @Inject constructor(
                         _mainState.update { currentState ->
                             currentState.copy(
                                 isLoading = false,
-                                articlesBySource = it?.articles ?: emptyList()
+                                articlesBySource = it?.articles ?: emptyList(),
+                                error = null
                             )
                         }
                     },

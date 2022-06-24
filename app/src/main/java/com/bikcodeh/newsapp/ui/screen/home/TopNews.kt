@@ -38,6 +38,10 @@ fun TopNews(
         ErrorScreen(error = it.toError())
     }
 
+    if (mainState.articles.isEmpty()) {
+        mainViewModel.getTopArticles()
+    }
+
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         SearchBar(mainViewModel)
         val resultList = mutableListOf<TopNewsArticle>()

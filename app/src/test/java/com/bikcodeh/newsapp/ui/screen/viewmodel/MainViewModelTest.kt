@@ -3,9 +3,9 @@ package com.bikcodeh.newsapp.ui.screen.viewmodel
 import app.cash.turbine.test
 import com.bikcodeh.newsapp.data.model.TopNewsArticle
 import com.bikcodeh.newsapp.data.model.TopNewsResponse
-import com.bikcodeh.newsapp.data.repository.Repository
 import com.bikcodeh.newsapp.domain.common.Result
 import com.bikcodeh.newsapp.domain.model.ArticleCategory
+import com.bikcodeh.newsapp.domain.repository.TopNewsRepository
 import com.bikcodeh.newsapp.util.MainCoroutineRule
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
@@ -31,7 +31,7 @@ class MainViewModelTest {
     lateinit var mainViewModel: MainViewModel
 
     @MockK(relaxed = true)
-    lateinit var repository: Repository
+    lateinit var repository: TopNewsRepository
 
     @Before
     fun setUp() {
