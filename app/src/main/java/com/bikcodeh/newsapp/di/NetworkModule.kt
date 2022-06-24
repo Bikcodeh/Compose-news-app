@@ -1,7 +1,6 @@
 package com.bikcodeh.newsapp.di
 
 import com.bikcodeh.newsapp.BuildConfig
-import com.bikcodeh.newsapp.data.remote.Api
 import com.bikcodeh.newsapp.data.remote.NewsService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
