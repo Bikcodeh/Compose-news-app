@@ -39,6 +39,12 @@ class HomeScreenTest : BaseUITest(dispatcher = newsDispatcher) {
         hiltTestRule.inject()
     }
 
+    private fun setView() {
+        composeTestRule.setContent {
+            NewsApp(mainViewModel = composeTestRule.activity.viewModels<MainViewModel>().value)
+        }
+    }
+
     @Test
     fun assertItemsAreDisplayed() {
         typeRequest = TypeRequest.NoError
@@ -95,12 +101,6 @@ class HomeScreenTest : BaseUITest(dispatcher = newsDispatcher) {
         typeRequest = TypeRequest.DelayResponse
         setView()
         composeTestRule.onNodeWithTag("LoadingView").assertIsDisplayed()
-    }
-
-    private fun setView() {
-        composeTestRule.setContent {
-            NewsApp(mainViewModel = composeTestRule.activity.viewModels<MainViewModel>().value)
-        }
     }
 }
 

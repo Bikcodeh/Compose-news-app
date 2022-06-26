@@ -1,6 +1,5 @@
 package com.bikcodeh.newsapp.ui.component
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,14 +20,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
 @Composable
-fun SearchBar(mainViewModel: MainViewModel) {
-
-    val query = mainViewModel.searchQuery
-
+fun SearchBar(
+    text: String,
+    onTextChange: (String) -> Unit,
+    onSearchClicked: (String) -> Unit,
+    onCloseClicked: () -> Unit
+) {
     val localFocusManager = LocalFocusManager.current
     Card(
         elevation = 6.dp,
@@ -40,11 +39,12 @@ fun SearchBar(mainViewModel: MainViewModel) {
         backgroundColor = MaterialTheme.colors.primary
     ) {
         TextField(
-            value = query.value,
+            value = text,
             onValueChange = {
-                mainViewModel.updateQuery(it)
+                onTextChange(it)
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .testTag("SearchBarTextField"),
             label = {
                 Text(text = "Search", color = Color.White)
@@ -57,12 +57,16 @@ fun SearchBar(mainViewModel: MainViewModel) {
                 Icon(Icons.Default.Search, contentDescription = null, tint = Color.White)
             },
             trailingIcon = {
-                if (query.value.isNotEmpty()) {
-                    IconButton(onClick = {
-                        query.value = ""
-                        mainViewModel.clearSearch()
+                if (text.isNotEmpty()) {
+                    IconButton(modifier = Modifier.testTag("CloseIconSearchBar"), onClick = {
+                        onTextChange("")
+                        onCloseClicked()
                     }) {
-                        Icon(Icons.Default.Close, contentDescription = null, tint = Color.White)
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
                     }
                 }
             },
@@ -72,8 +76,8 @@ fun SearchBar(mainViewModel: MainViewModel) {
             ),
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    if (query.value.isNotEmpty()) {
-                        mainViewModel.getSearchArticles(query.value)
+                    if (text.isNotEmpty()) {
+                        onSearchClicked(text)
                     }
                     localFocusManager.clearFocus()
                 }
@@ -83,9 +87,8 @@ fun SearchBar(mainViewModel: MainViewModel) {
     }
 }
 
-@SuppressLint("UnrememberedMutableState")
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
-    SearchBar(viewModel())
+    SearchBar(onTextChange = {}, text = "", onCloseClicked = {}, onSearchClicked = {})
 }

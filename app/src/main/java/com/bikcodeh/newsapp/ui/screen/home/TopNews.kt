@@ -33,6 +33,7 @@ fun TopNews(
     val resultList = mutableListOf<TopNewsArticle>()
 
     val mainState by mainViewModel.mainState.collectAsState()
+    val query by mainViewModel.searchQuery
 
     if (mainState.isLoading) {
         LoadingScreen()
@@ -55,7 +56,18 @@ fun TopNews(
                 contentDescription = "ColumnArticlesHome"
             }, horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SearchBar(mainViewModel)
+        SearchBar(
+            text = query,
+            onTextChange = {
+                mainViewModel.updateQuery(it)
+            },
+            onCloseClicked = {
+                mainViewModel.clearSearch()
+            },
+            onSearchClicked = {
+                mainViewModel.getSearchArticles(it)
+            }
+        )
         LazyColumn(modifier = Modifier.testTag("LazyColumnArticlesHome")) {
             items(resultList.count()) { index ->
                 TopNewsItem(article = resultList[index], onItemClick = {
