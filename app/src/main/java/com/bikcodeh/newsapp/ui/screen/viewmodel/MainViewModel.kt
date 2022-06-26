@@ -29,6 +29,9 @@ class MainViewModel @Inject constructor(
     val mainState: StateFlow<NewsUiState>
         get() = _mainState.asStateFlow()
 
+    private val _selectedNews: MutableStateFlow<TopNewsArticle?> = MutableStateFlow(null)
+    val selectedNews: StateFlow<TopNewsArticle?> = _selectedNews.asStateFlow()
+
     val searchQuery: MutableState<String> = mutableStateOf("")
     val sourceName: MutableState<String> = mutableStateOf("abc-news")
 
@@ -138,6 +141,16 @@ class MainViewModel @Inject constructor(
                         }
                     }
                 )
+        }
+    }
+
+    fun getSelectedArticle(index: Int?) {
+        index?.let {
+            if (_mainState.value.searchedNews.isNotEmpty()) {
+                _selectedNews.value = _mainState.value.searchedNews[index]
+            } else {
+                _selectedNews.value = _mainState.value.articles[index]
+            }
         }
     }
 

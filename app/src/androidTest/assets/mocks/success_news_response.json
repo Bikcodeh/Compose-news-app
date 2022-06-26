@@ -1,0 +1,267 @@
+{
+  "status": "ok",
+  "totalResults": 38,
+  "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "New York Times"
+      },
+      "author": "Michael Barbaro, Rob Szypko, Eric Krupke, Sydney Harper, Carlos Prieto, Lisa Chow, Marc Georges, Ben Calhoun, Dan Powell, Corey Schreppel, Marion Lozano",
+      "title": "Special Episode: Roe v. Wade Is Overturned - The New York Times",
+      "description": "In a decision with sweeping implications, the Supreme Court eliminated the constitutional right to abortion. What comes next?",
+      "url": "https://www.nytimes.com/2022/06/25/podcasts/the-daily/roe-wade-abortion-supreme-court.html",
+      "urlToImage": "https://static01.nyt.com/images/2022/06/25/us/24-The-Daily-late-roe-nation-A1/24roe-nation02-facebookJumbo.jpg",
+      "publishedAt": "2022-06-25T10:28:10Z",
+      "content": "Adam Liptak and Sydney Harper contributed reporting.\r\nThe Daily is made by Lisa Tobin, Rachel Quester, Lynsea Garrison, Clare Toeniskoetter, Paige Cowett, Michael Simon Johnson, Brad Fisher, Larissa … [+764 chars]"
+    },
+    {
+      "source": {
+        "id": "cnn",
+        "name": "CNN"
+      },
+      "author": "Tierney Sneed, CNN",
+      "title": "Some states move quickly to ban abortion after Supreme Court ruling - CNN",
+      "description": "Now that the Supreme Court has given the green light for lawmakers to ban abortion, several Republican-led states have taken quick steps to do so.",
+      "url": "https://www.cnn.com/2022/06/24/politics/abortion-ban-states-move-quickly/index.html",
+      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220617121810-ken-paxton-nov-2021-super-tease.jpg",
+      "publishedAt": "2022-06-25T10:18:00Z",
+      "content": "(CNN)Now that the Supreme Court has given the green light for lawmakers to prohibit abortion, several states, most of them Republican-led, have taken quick steps to do so. In at least seven states, s… [+2789 chars]"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "Liz Sly",
+      "title": "Russian military offensive in Ukraine could soon grind to a halt, Western intelligence predicts - The Washington Post",
+      "description": "Small shifts in territorial control matter less than the overall balance of forces, which analysts say could shift back in favor of Ukraine in the coming months.",
+      "url": "https://www.washingtonpost.com/world/2022/06/25/ukraine-russia-balance-of-forces/",
+      "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/W453ONXSGQI6ZLAWR67XDFGNPA.jpg&w=1440",
+      "publishedAt": "2022-06-25T10:00:00Z",
+      "content": "Placeholder while article actions load\r\nThe Russian military will soon exhaust its combat capabilities and be forced to bring its offensive in Ukraines eastern Donbas region to a grinding halt, accor… [+8246 chars]"
+    },
+    {
+      "source": {
+        "id": "reuters",
+        "name": "Reuters"
+      },
+      "author": null,
+      "title": "Gunman opens fire at Oslo gay bar, killing two on Pride parade day - Reuters.com",
+      "description": "A gunman went on a terrifying rampage in a gay bar and the surrounding streets in Oslo on Saturday, killing two people and injuring more than 20 on the day the city's LGBTQ community was due to celebrate its annual Pride parade.",
+      "url": "https://www.reuters.com/world/europe/two-dead-several-wounded-norway-nightclub-shooting-police-say-2022-06-25/",
+      "urlToImage": "https://www.reuters.com/resizer/nJC1G4hFURzs0wx2CNKUcje8nv8=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/K7LLVCEQKZKFDDEC2HLZEJMVI4.jpg",
+      "publishedAt": "2022-06-25T09:43:00Z",
+      "content": "OSLO, June 25 (Reuters) - A gunman went on a terrifying rampage in a gay bar and the surrounding streets in Oslo on Saturday, killing two people and injuring more than 20 on the day the city's LGBTQ … [+2992 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "TMZ"
+      },
+      "author": "TMZ Staff",
+      "title": "Ceaser Emanuel Investigated by Animal Services and Cops for Dog Abuse Video - TMZ",
+      "description": "Ceaser Emanuel is being investigated by police and animal services for his alleged dog abuse video.",
+      "url": "https://www.tmz.com/2022/06/25/ceaser-emanuel-investigate-animal-service-police-dog-abuse-video/",
+      "urlToImage": "https://imagez.tmz.com/image/8f/16by9/2022/06/24/8f43509380c842cb9e67b64bc22c4fa7_xl.jpg",
+      "publishedAt": "2022-06-25T08:00:00Z",
+      "content": "Now ex-\"Black Ink Crew\" star Ceaser Emanuel is being investigated by animal services and local law enforcement after the video of him allegedly abusing dogs picked up traction online.\r\nA rep for Fult… [+1835 chars]"
+    },
+    {
+      "source": {
+        "id": "al-jazeera-english",
+        "name": "Al Jazeera English"
+      },
+      "author": "Al Jazeera",
+      "title": "Morocco: 18 migrants die in attempt to enter Spain’s Melilla - Al Jazeera English",
+      "description": "Deaths occurred during attempted mass crossing into Spanish North African enclave by some 2,000 migrants, officials say.",
+      "url": "https://www.aljazeera.com/news/2022/6/24/hundreds-of-migrants-storm-border-fence-in-spains-melilla",
+      "urlToImage": "https://www.aljazeera.com/wp-content/uploads/2022/06/AP22175403487726.jpg?resize=1200%2C630",
+      "publishedAt": "2022-06-25T05:48:45Z",
+      "content": "Moroccan authorities said that 18 migrants were killed and dozens of migrants and police officers were injured in a stampede of people trying to cross into the Spanish North African enclave of Melill… [+3428 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "AZCentral"
+      },
+      "author": ", The Arizona Republic",
+      "title": "Abortion reaction updates: Unlawful assembly at downtown Phoenix rally - The Arizona Republic",
+      "description": "Arizona reacts to the U.S. Supreme Court's ruling that overturned Roe v. Wade and allows states to set their own course on abortion laws.",
+      "url": "https://www.azcentral.com/story/news/local/arizona/2022/06/24/abortion-reaction-arizona-protests-planned-phoenix-tucson/7726687001/",
+      "urlToImage": "https://www.gannett-cdn.com/presto/2022/06/25/PPHX/93bd35ed-c02d-47ee-bf34-ef0cd1c20e3f-AbortionProtestClashes_06242022004.JPG?auto=webp&crop=5099,2869,x0,y259&format=pjpg&width=1200",
+      "publishedAt": "2022-06-25T05:15:06Z",
+      "content": "The U.S. Supreme Court's Friday ruling in Dobbs v. Jackson Women's Health Organization overturned Roe v. Wade and allows states to set their own course on abortion laws.\r\nHow this will impact Arizona… [+10326 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "MMA Fighting"
+      },
+      "author": "MMA Fighting Newswire",
+      "title": "‘What a performance’: Fighters react to Johnny Eblen’s stunning win over Gegard Mousasi at Bellator 282 - MMA Fighting",
+      "description": "The MMA world reacts to Gegard Mousasi’s stunning loss to Johnny Eblen at Bellator 282.",
+      "url": "https://www.mmafighting.com/2022/6/25/23182600/what-a-performance-fighters-react-to-johnny-eblens-stunning-win-over-gegard-mousasi-at-bellator-282",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/PXe2r319sSw-wK41m7bZI6dB6ao=/0x0:3850x2016/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23651071/C07_9318.jpg",
+      "publishedAt": "2022-06-25T04:55:34Z",
+      "content": "The Gegard Mousasi era is over in the Bellator middleweight division.\r\nIn a shocking turn of events, Johnny Elben had the performance of a lifetime to dominate Mousasi and capture the Bellator middle… [+872 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CBS Sports"
+      },
+      "author": "Austin Nivison",
+      "title": "Avalanche vs. Lightning score Stanley Cup Final Game 5: Tampa wins 3-2, stays alive after Palat game-winner - CBS Sports",
+      "description": "The Lightning will return to Tampa for Game 6 thanks to Palat's go-ahead goal at 13:38 of the third period",
+      "url": "https://www.cbssports.com/nhl/news/avalanche-vs-lightning-score-stanley-cup-final-game-5-tampa-bay-staves-off-elimination-with-3-2-win/live/",
+      "urlToImage": "https://sportshub.cbsistatic.com/i/r/2022/06/25/bdb314d0-e29d-4ec6-a401-da486d4df9f7/thumbnail/1200x675/9fc300bc1236954e87adf28080560df7/webp-net-resizeimage.jpg",
+      "publishedAt": "2022-06-25T04:19:26Z",
+      "content": "There will be a Game 6. The Tampa Bay Lightning went into a raucous Ball Arena and pulled out a gutsy 3-2 win over the Colorado Avalanche in Game 5 of the 2022 Stanley Cup Final. The back-to-back cha… [+3920 chars]"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "Caroline Kitchener",
+      "title": "'We're done': Chaos and tears as an abortion clinic abruptly shuts down - The Washington Post",
+      "description": "",
+      "url": "https://www.washingtonpost.com/politics/2022/06/24/abortion-clinic-dobbs-supreme-court-roe/",
+      "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/IRFYPYHUCEI6ZLAWR67XDFGNPA.jpg&w=1440",
+      "publishedAt": "2022-06-25T03:03:00Z",
+      "content": "HOUSTON The phones started ringing, as they always did, moments after Houston Womens Reproductive Services opened for business at 9 a.m. on Friday with patients in need of abortions calling to secure… [+6611 chars]"
+    },
+    {
+      "source": {
+        "id": "google-news",
+        "name": "Google News"
+      },
+      "author": null,
+      "title": "Dow Jones Futures: Market Rally Gains Steam; 9 Stocks To Watch - Investor's Business Daily",
+      "description": null,
+      "url": "https://news.google.com/__i/rss/rd/articles/CBMid2h0dHBzOi8vd3d3LmludmVzdG9ycy5jb20vbWFya2V0LXRyZW5kL3N0b2NrLW1hcmtldC10b2RheS9kb3ctam9uZXMtZnV0dXJlcy1tYXJrZXQtcmFsbHktZ2FpbnMtc3RlYW0tOS1zdG9ja3MtdG8td2F0Y2gv0gEA?oc=5",
+      "urlToImage": null,
+      "publishedAt": "2022-06-25T01:26:00Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": "fox-news",
+        "name": "Fox News"
+      },
+      "author": "Stephanie Pagones, Michael Ruiz",
+      "title": "Brian Laundrie's Gabby Petito confession: Experts weigh in on admitted killer's claims, 'This is all lies' - Fox News",
+      "description": "Experts weigh in as the first public glimpse of a confession Brian Laundrie left in a notebook in the Florida swamp where he killed himself last year reveals his final words.",
+      "url": "https://www.foxnews.com/us/brian-laundries-gabby-petito-confession-experts-weigh-admitted-killers-claims-all-lies",
+      "urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2022/06/brian-note.jpg",
+      "publishedAt": "2022-06-25T01:03:37Z",
+      "content": "If you or someone you know is the victim of domestic abuse, please call the National Domestic Violence Hotline at 800-799-7233.\r\nTAMPA, Fla. Brian Laundrie framed his strangulation of Gabby Petito as… [+9957 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Variety"
+      },
+      "author": "Michael Schneider",
+      "title": "Daytime Emmys 2022 Winners List (UPDATED LIVE) - Variety",
+      "description": "Popular on Variety The 49th annual Daytime Emmys returned to a live, in-person event on Friday night, and the day’s news — the overturn of Roe v. Wade and the assault on women’s rights by a rogue Supreme Court — threatened to overshadow the event. But the two…",
+      "url": "https://variety.com/2022/tv/awards/daytime-emmys-2022-winners-list-1235303165/",
+      "urlToImage": "https://variety.com/wp-content/uploads/2022/06/DSC_5689-e1656117467168.jpg?w=1024",
+      "publishedAt": "2022-06-25T00:56:00Z",
+      "content": "The 49th annual Daytime Emmys returned to a live, in-person event on Friday night, and the day’s news — the overturn of Roe v. Wade and the assault on women’s rights by a rogue Supreme Court — threat… [+8747 chars]"
+    },
+    {
+      "source": {
+        "id": "the-verge",
+        "name": "The Verge"
+      },
+      "author": "Mitchell Clark",
+      "title": "Juul can keep selling e-cigarettes, after an appeals court paused the FDA's ban - The Verge",
+      "description": "A court has ruled that Juul can keep selling its products while the company prepares an emergency motion to stay the FDA’s recent order preventing sales of the Juul device and Juul pods.",
+      "url": "https://www.theverge.com/2022/6/24/23182384/fda-juul-ban-pause-dc-appeals-court-emergency-immediate-stay",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/MMZ4hEe2jQWqY5yHInAAayYawFc=/0x146:2040x1214/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/19205211/acastro_190916_1777_juul_0002.0.jpg",
+      "publishedAt": "2022-06-25T00:37:24Z",
+      "content": "A DC appeals court is giving the company a moment to prepare the paperwork\r\nThe company says it could suffer irreparable harm if it cant sell its products while the court considers its case.\r\nIllustr… [+1586 chars]"
+    },
+    {
+      "source": {
+        "id": "the-verge",
+        "name": "The Verge"
+      },
+      "author": "Richard Lawler",
+      "title": "Snoop Dogg and Eminem's Bored Ape music video is here to try and sell us on tokens - The Verge",
+      "description": "To close out the ApeFest 2022 event, Snoop Dogg and Eminem present a new song and video, which features animations with their associated Bored Ape Yacht Club NFT characters, called From The D 2 The LBC.",
+      "url": "https://www.theverge.com/2022/6/24/23181936/bayc-eminem-snoop-dogg-yuga-labs-nft",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/b-wgXk_hMxym5z0o9qjwBkDZjR8=/0x124:1800x1066/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23650581/FV_QopaUAAA01MS.jpg",
+      "publishedAt": "2022-06-24T23:35:50Z",
+      "content": "Crypto prices are dropping, but heres some new music"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "Abigail Higgins",
+      "title": "Abortion advocates fear access to birth control could be curtailed - The Washington Post",
+      "description": "The Supreme Court’s decision to overturn the right to abortion is stoking fears among some Americans that curbing access to contraceptives could be next.",
+      "url": "https://www.washingtonpost.com/nation/2022/06/24/birth-control-access-supreme-court-abortion-ruling/",
+      "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/Y36SBS4U4RGZPMLPDLVILWNXDY.jpg&w=1440",
+      "publishedAt": "2022-06-24T23:05:00Z",
+      "content": "Placeholder while article actions load\r\nThe Supreme Courts decision to overturn the fundamental right to abortion is stoking fears among some Americans that curbing access to contraceptives could be … [+8162 chars]"
+    },
+    {
+      "source": {
+        "id": "cnn",
+        "name": "CNN"
+      },
+      "author": "Jen Christensen, CNN",
+      "title": "CDC says gay and bi men in Florida need the meningococcal vaccine, to keep them safe in 'worst' outbreak in US history - CNN",
+      "description": "Don't be surprised if you see the US Centers for Disease Control and Prevention out at the LGBTQ pride parade this year or showing up on your dating app.",
+      "url": "https://www.cnn.com/2022/06/24/health/gay-bi-men-need-meningococcal-vaccine/index.html",
+      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220622154812-meningococcal-vaccine-file-super-tease.jpg",
+      "publishedAt": "2022-06-24T23:03:00Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": "mashable",
+        "name": "Mashable"
+      },
+      "author": "Jennimai Nguyen",
+      "title": "How period apps are affected by the overturning of Roe v. Wade - Mashable",
+      "description": "Can apps like Flo really be used against you in states that ban abortions?",
+      "url": "https://mashable.com/article/period-apps-roe-v-wade",
+      "urlToImage": "https://helios-i.mashable.com/imagery/articles/05Xlz4ByhPb8heN3hNhWZmF/hero-image.fill.size_1200x675.v1656103821.jpg",
+      "publishedAt": "2022-06-24T22:30:34Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "STYLECASTER"
+      },
+      "author": "Jenzia Burgos",
+      "title": "Elvis Presley Net Worth at Death: Salary, How Much Graceland Costs - STYLECASTER",
+      "description": "Graceland didn't pay for itself, after all.",
+      "url": "https://stylecaster.com/elvis-net-worth/",
+      "urlToImage": "https://stylecaster.com/wp-content/uploads/2022/06/Elvis-Presley-1.png",
+      "publishedAt": "2022-06-24T22:05:00Z",
+      "content": "Scroll To See More Images\r\nFrom his humble beginnings in Mississippi, to his Graceland mansion in Memphis, Elvis Presleys net worth at the time of his death was a fortune fit for a kingespecially whe… [+6277 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "New York Times"
+      },
+      "author": "Kenneth Chang",
+      "title": "NASA Pauses Psyche, a Mission to a Metal-Rich Asteroid - The New York Times",
+      "description": "Delays in setting up the spacecraft’s navigation software mean the mission may not reach the asteroid until 2029 or 2030, rather than 2026.",
+      "url": "https://www.nytimes.com/2022/06/24/science/nasa-psyche-delay.html",
+      "urlToImage": "https://static01.nyt.com/images/2022/06/24/science/24nasa-psyche/24nasa-psyche-facebookJumbo.jpg",
+      "publishedAt": "2022-06-24T21:20:59Z",
+      "content": "We just ran out of time on this one, Lindy Elkins-Tanton of Arizona State University, the principal investigator for the mission, said Friday during a news conference.\r\nLast month, NASA announced tha… [+852 chars]"
+    }
+  ]
+
+}

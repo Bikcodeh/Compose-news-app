@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +28,9 @@ fun TopNewsItem(article: TopNewsArticle, onItemClick: () -> Unit) {
             .padding(8.dp)
             .clickable {
                 onItemClick()
+            }
+            .semantics {
+                contentDescription = "NewItem"
             }
     ) {
         CoilImage(
@@ -47,13 +52,19 @@ fun TopNewsItem(article: TopNewsArticle, onItemClick: () -> Unit) {
                     color = Color.White,
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.semantics {
+                        contentDescription = "PublishedNew"
+                    }
                 )
             }
             Text(
                 text = article.title ?: String(),
                 color = Color.White,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.semantics {
+                    contentDescription = "TitleNew"
+                }
             )
         }
     }

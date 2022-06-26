@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,7 +25,7 @@ fun ErrorScreen(error: Error) {
         is Error.Unknown -> stringResource(id = R.string.error_unexpected)
     }
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopEnd) {
+    Box(modifier = Modifier.fillMaxSize().testTag("ErrorBox"), contentAlignment = Alignment.TopEnd) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -39,7 +40,8 @@ fun ErrorScreen(error: Error) {
             Text(
                 text = errorMessage,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h6
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.testTag("ErrorMessage")
             )
         }
     }

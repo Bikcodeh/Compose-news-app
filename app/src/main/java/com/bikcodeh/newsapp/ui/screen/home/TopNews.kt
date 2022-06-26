@@ -9,6 +9,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -25,9 +28,10 @@ import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 @Composable
 fun TopNews(
     navController: NavController,
-    articles: List<TopNewsArticle>,
     mainViewModel: MainViewModel
 ) {
+    val resultList = mutableListOf<TopNewsArticle>()
+
     val mainState by mainViewModel.mainState.collectAsState()
 
     if (mainState.isLoading) {
@@ -38,20 +42,21 @@ fun TopNews(
         ErrorScreen(error = it.toError())
     }
 
-    if (mainState.articles.isEmpty()) {
-        mainViewModel.getTopArticles()
+    if (mainState.searchedNews.isNotEmpty()) {
+        resultList.addAll(mainState.searchedNews)
+    } else {
+        resultList.addAll(mainState.articles)
     }
 
-    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics {
+                contentDescription = "ColumnArticlesHome"
+            }, horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         SearchBar(mainViewModel)
-        val resultList = mutableListOf<TopNewsArticle>()
-        if (mainState.searchedNews.isNotEmpty()) {
-            resultList.addAll(mainState.searchedNews)
-        } else {
-            resultList.addAll(articles)
-        }
-
-        LazyColumn() {
+        LazyColumn(modifier = Modifier.testTag("LazyColumnArticlesHome")) {
             items(resultList.count()) { index ->
                 TopNewsItem(article = resultList[index], onItemClick = {
                     navController.navigate(Screen.Detail.passNewsIndex(index))
@@ -65,5 +70,5 @@ fun TopNews(
 @Preview(showBackground = true)
 @Composable
 fun TopNewsPreview() {
-    TopNews(rememberNavController(), emptyList(), viewModel())
+    TopNews(rememberNavController(), viewModel())
 }

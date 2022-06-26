@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -34,7 +35,8 @@ fun SearchBar(mainViewModel: MainViewModel) {
         shape = RoundedCornerShape(4.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .testTag("SearchBarNews"),
         backgroundColor = MaterialTheme.colors.primary
     ) {
         TextField(
@@ -42,7 +44,8 @@ fun SearchBar(mainViewModel: MainViewModel) {
             onValueChange = {
                 mainViewModel.updateQuery(it)
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .testTag("SearchBarTextField"),
             label = {
                 Text(text = "Search", color = Color.White)
             },

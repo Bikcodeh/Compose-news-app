@@ -36,11 +36,10 @@ fun MainScreen(navController: NavHostController, scrollState: ScrollState, mainV
 
 fun NavGraphBuilder.bottomNavigation(
     navController: NavController,
-    articles: List<TopNewsArticle>,
     mainViewModel: MainViewModel
 ) {
     composable(BottomMenuScreen.TopNews.route) {
-        TopNews(navController = navController, articles, mainViewModel)
+        TopNews(navController = navController, mainViewModel)
     }
 
     composable(BottomMenuScreen.Categories.route) {
