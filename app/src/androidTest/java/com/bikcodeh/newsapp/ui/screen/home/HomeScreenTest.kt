@@ -92,7 +92,7 @@ class HomeScreenTest : BaseUITest(dispatcher = newsDispatcher) {
 
     @Test
     fun assertLoadingIsDisplayed() {
-        typeRequest = TypeRequest.UnknownError
+        typeRequest = TypeRequest.DelayResponse
         setView()
         composeTestRule.onNodeWithTag("LoadingView").assertIsDisplayed()
     }
@@ -120,7 +120,7 @@ private val newsDispatcher by lazy {
                         setResponseCode(HttpURLConnection.HTTP_INTERNAL_ERROR)
                     }
                 }
-                TypeRequest.UnknownError -> {
+                TypeRequest.DelayResponse -> {
                     mockResponse(FILE_SUCCESS_NEWS_RESPONSE, HTTP_OK).apply {
                      setBodyDelay(3, TimeUnit.SECONDS)
                     }
@@ -139,7 +139,7 @@ private val newsDispatcher by lazy {
 private sealed class TypeRequest {
     object Connectivity : TypeRequest()
     object Server : TypeRequest()
-    object UnknownError: TypeRequest()
+    object DelayResponse: TypeRequest()
     object NoError : TypeRequest()
     object Empty : TypeRequest()
 }
