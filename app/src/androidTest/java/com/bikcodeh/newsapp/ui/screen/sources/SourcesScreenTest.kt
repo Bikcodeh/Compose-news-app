@@ -71,6 +71,29 @@ class SourcesScreenTest : BaseUITest(dispatcher = newsDispatcher) {
         composeTestRule.onAllNodesWithTag(SourcesTestTags.SOURCE_TITLE)[0].assert(hasText("Lewis Hamilton says he feels 'smaller' and reveals other health concerns due to Mercedes car that is 'so bad' as Formula 1 star opens up ahead of Canadian Grand Prix"))
         composeTestRule.onAllNodesWithTag(SourcesTestTags.SOURCE_DESCRIPTION)[0].assert(hasText("Lewis Hamilton says he feels 'smaller' and reveals other health concerns due to Mercedes car that is 'so bad' as Formula 1 star opens up ahead of Canadian Grand Prixtalksport.com"))
     }
+
+    @Test
+    fun assertDisplayErrorConnectivityScreen() {
+        typeRequest = TypeRequest.Connectivity
+        setView()
+        composeTestRule.onNodeWithTag("ErrorBox").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("ErrorMessage").assert(hasText("Connectivity Error"))
+    }
+
+    @Test
+    fun assertDisplayErrorScreen() {
+        typeRequest = TypeRequest.Server
+        setView()
+        composeTestRule.onNodeWithTag("ErrorBox").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("ErrorMessage").assert(hasText("Internal server error: 500"))
+    }
+
+    @Test
+    fun assertLoadingIsDisplayed() {
+        typeRequest = TypeRequest.DelayResponse
+        setView()
+        composeTestRule.onNodeWithTag("LoadingView").assertIsDisplayed()
+    }
 }
 
 private val newsDispatcher by lazy {
