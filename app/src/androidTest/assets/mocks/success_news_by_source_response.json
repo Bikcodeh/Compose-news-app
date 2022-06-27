@@ -1,0 +1,84 @@
+{
+  "status": "ok",
+  "totalResults": 6,
+  "articles": [
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "Tayllor Lillestol",
+      "title": "Celebrating Pride Month at Disneyland Paris",
+      "description": "As we continue celebrating Pride Month, we’re honored to recognize and elevate diverse voices and perspectives across the LGBTQIA+ community, including at Disneyland Paris, where we recently welcomed the return of Disneyland Paris Pride at Walt Disney Studios…",
+      "url": "https://disneyparks.disney.go.com/blog/2022/06/celebrating-pride-month-at-disneyland-paris/",
+      "urlToImage": "https://cdn1.parksmedia.wdprapps.disney.com/media/blog/wp-content/uploads/2022/06/i238y7278toyu1gh3jbrt2g3r23420.jpg",
+      "publishedAt": "2022-06-27T14:01:48Z",
+      "content": "As we continue celebrating Pride Month, were honored to recognize and elevate diverse voices and perspectives across the LGBTQIA+ community, including at Disneyland Paris, where we recently welcomed … [+1841 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "ABC News",
+      "title": "Why captions are suddenly everywhere and how they got there",
+      "description": "People with hearing loss have long adopted technology to navigate the world, especially since hearing aids are expensive and inaccessible to many",
+      "url": "https://abcnews.go.com/Business/wireStory/captions-suddenly-85787335",
+      "urlToImage": "https://s.abcnews.com/images/Technology/WireAP_3e8c96ea9a7c4fcfae62ddad691a8684_16x9_992.jpg",
+      "publishedAt": "2022-06-27T14:00:30Z",
+      "content": "NEW YORK -- People with hearing loss have a new ally in their efforts to navigate the world: Captions that arent limited to their television screens and streaming services.\r\nThe COVID pandemic disrup… [+6069 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "ABC News",
+      "title": "Cyberattack hits Lithuania after sanctions feud with Russia",
+      "description": "Lithuania's Defense Ministry says a cyberattack temporarily knocked out public and private websites in the country with a pro-Moscow hacker group reportedly claiming responsibility",
+      "url": "https://abcnews.go.com/International/wireStory/cyberattack-hits-lithuania-sanctions-feud-russia-85787252",
+      "urlToImage": "https://s.abcnews.com/images/US/abc_news_default_2000x2000_update_16x9_992.jpg",
+      "publishedAt": "2022-06-27T13:55:26Z",
+      "content": "VILNIUS, Lithuania -- A cyberattack temporarily knocked out public and private websites in Lithuania, the country's Defense Minister said Monday, with a pro-Moscow hacker group reportedly claiming re… [+1003 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "ABC News",
+      "title": "Supreme Court's abortion ruling sets off new court fights",
+      "description": "The Supreme Court’s ruling to overturn Roe v. Wade is moving to courtrooms around the country",
+      "url": "https://abcnews.go.com/US/wireStory/supreme-courts-abortion-ruling-sets-off-court-fights-85787112",
+      "urlToImage": "https://s.abcnews.com/images/US/WireAP_f72b23557210410c8d6e798aca0e1c4d_16x9_992.jpg",
+      "publishedAt": "2022-06-27T13:53:03Z",
+      "content": "TALLAHASSEE, Fla. -- The Supreme Courts ruling to overturn Roe v. Wade moved Monday to courtrooms around the country as anti-abortion advocates looked to quickly enact statewide bans and their oppone… [+5603 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "ABC News",
+      "title": "Temp worker held on $5M bond in Illinois warehouse shooting",
+      "description": "Authorities say a temporary worker has been charged in a shooting that killed a co-worker and wounded two others at an automotive interior products warehouse in suburban Chicago",
+      "url": "https://abcnews.go.com/US/wireStory/temp-worker-held-5m-bond-illinois-warehouse-shooting-85787071",
+      "urlToImage": "https://s.abcnews.com/images/US/abc_news_default_2000x2000_update_16x9_992.jpg",
+      "publishedAt": "2022-06-27T13:52:51Z",
+      "content": "BOLINGBROOK, Ill. -- A temporary worker has been charged in a shooting that killed a co-worker and wounded two others at an automotive interior products warehouse in suburban Chicago, authorities sai… [+1015 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "ABC News",
+      "title": "Last title",
+      "description": "The company planning to buy Donald Trump’s new social media business disclosed Monday that it has received subpoenas from a grand jury in New York",
+      "url": "https://abcnews.go.com/Technology/wireStory/company-buying-trumps-social-media-app-faces-subpoenas-85786439",
+      "urlToImage": "https://s.abcnews.com/images/US/abc_news_default_2000x2000_update_16x9_992.jpg",
+      "publishedAt": "2022-06-27T13:49:07Z",
+      "content": "NEW YORK -- The company planning to buy Donald Trumps new social media business disclosed Monday that it has received subpoenas from a grand jury in New York.\r\nShares of Digital World Acquisition Cor… [+1052 chars]"
+    }
+  ]
+}
