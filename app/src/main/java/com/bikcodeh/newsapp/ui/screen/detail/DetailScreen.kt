@@ -2,7 +2,6 @@ package com.bikcodeh.newsapp.ui.screen.detail
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,11 +11,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bikcodeh.newsapp.R
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 
@@ -57,14 +55,16 @@ fun DetailTopBar(onBackPressed: () -> Unit = {}) {
 }
 
 @Composable
-fun InfoWithIcon(icon: ImageVector, info: String) {
+fun InfoWithIcon(icon: ImageVector, info: String, testTag: String) {
     Row {
         Icon(
             icon,
             contentDescription = stringResource(id = R.string.author),
-            modifier = Modifier.padding(end = 8.dp),
+            modifier = Modifier
+                .padding(end = 8.dp)
+                .testTag(testTag),
             colorResource(id = R.color.purple_500)
         )
-        Text(text = info)
+        Text(text = info, modifier = Modifier.testTag("TextInfoIcon"))
     }
 }

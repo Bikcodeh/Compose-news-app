@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -46,21 +47,27 @@ fun DetailContent(article: TopNewsArticle) {
         ) {
             InfoWithIcon(
                 icon = Icons.Default.Edit,
-                info = article.author ?: stringResource(id = R.string.not_available)
+                info = article.author ?: stringResource(id = R.string.not_available),
+                testTag = "authorInfoIcon"
             )
             InfoWithIcon(
                 icon = Icons.Default.DateRange,
-                info = Util.stringToDate(article.publishedAt!!).getTimeAgo()
+                info = Util.stringToDate(article.publishedAt!!).getTimeAgo(),
+                testTag = "dateInfoIcon"
             )
         }
         Text(
             text = article.title ?: stringResource(id = R.string.not_available),
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .testTag("TitleDetail")
         )
         Text(
             text = article.description ?: stringResource(id = R.string.not_available),
-            modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
+            modifier = Modifier
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                .testTag("DescriptionDetail")
         )
     }
 }
