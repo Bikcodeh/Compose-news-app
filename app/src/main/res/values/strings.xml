@@ -10,4 +10,5 @@
     <string name="back">Back</string>
     <string name="author">Author</string>
     <string name="read_article">Read Full Article Here</string>
+    <string name="empty_news">Ups! Currently there aren\'t news.</string>
 </resources>

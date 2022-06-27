@@ -1,6 +1,5 @@
 package com.bikcodeh.newsapp.navigation
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -17,7 +16,6 @@ import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 @Composable
 fun Navigation(
     navController: NavHostController,
-    scrollState: ScrollState,
     paddingValues: PaddingValues,
     mainViewModel: MainViewModel
 ) {
@@ -34,7 +32,6 @@ fun Navigation(
         ) { navBackStackEntry ->
             val index = navBackStackEntry.arguments?.getInt(Screen.Detail.NAV_ARG_KEY)
             DetailScreen(
-                scrollState,
                 onBackPressed = { navController.popBackStack() },
                 mainViewModel,
                 index = index
