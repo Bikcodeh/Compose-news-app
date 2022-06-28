@@ -1,0 +1,71 @@
+{
+  "status": "ok",
+  "totalResults": 1000,
+  "articles": [
+    {
+      "source": {
+        "id": "la-repubblica",
+        "name": "La Repubblica"
+      },
+      "author": "Repubblica.it",
+      "title": "Le Borse di oggi 27 giugno. I listini Ue chiudono contrastati, giù Milano. Riflettori su G7 e forum dei banchieri centrali - la Repubblica",
+      "description": "I Paesi riuniti in Baviera per discutere di nuove misure economiche contro Mosca. A Sintra via al meeting con i vertici delle banche centrali. Tokyo chiude a +…",
+      "url": "https://www.repubblica.it/economia/2022/06/27/news/le_borse_di_oggi_27_giugno-355608630/",
+      "urlToImage": "https://www.repstatic.it/content/nazionale/img/2022/06/27/084810713-f0efa593-bfc9-4b13-88bc-5b9da3f82a25.jpg",
+      "publishedAt": "2022-06-27T22:09:35Z",
+      "content": "MILANO - Le Borse europee procedono chiudono contrastate in una settimana che si prepara a coronare il peggior semestre per i mercati dal 1970.  I riflettori sono puntati sul forum dei banchieri cent… [+4154 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNBC"
+      },
+      "author": "Yun Li",
+      "title": "Stock index futures inch higher following a losing day Monday - CNBC",
+      "description": "Investors will monitor more data on Tuesday, including June consumer confidence and April home prices to gauge the health of the economy.",
+      "url": "https://www.cnbc.com/2022/06/27/stock-market-futures-open-to-close-news.html",
+      "urlToImage": "https://image.cnbcfm.com/api/v1/image/107081243-TRADERS-OB-Photo-20220627-DN-112-PRESS6.jpg?v=1656352040&w=1920&h=1080",
+      "publishedAt": "2022-06-27T22:03:17Z",
+      "content": "Stock futures rose slightly in overnight trading Monday following a losing day as investors prepare to rebalance their portfolios with the end of the quarter fast approaching.\r\nFutures on the Dow Jon… [+1973 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Est Républicain"
+      },
+      "author": "La rédaction",
+      "title": "Disparition. Jean-Claude, candidat de la saison 6 de « L'Amour dans le pré », est décédé - Est Républicain",
+      "description": "Jean-Claude Joly, agriculteur et candidat de la saison 6 de « L'Amour dans le pré » en 2011, a été retrouvé sans vie, dans la nuit de vendredi à samedi, dans son exploitation, située à La Frenaye, entre Le Havre et Rouen, en Normandie.",
+      "url": "https://www.estrepublicain.fr/faits-divers-justice/2022/06/27/jean-claude-candidat-de-la-saison-6-de-l-amour-dans-le-pre-est-decede",
+      "urlToImage": "https://cdn-s-www.estrepublicain.fr/images/1DB40BEE-B1F1-4971-9EC6-F59B50D352C3/FB1200/photo-1656304807.jpg",
+      "publishedAt": "2022-06-27T21:51:57Z",
+      "content": "CAS N°1 : Vous (ou une autre personne) utilisez plus de $this.View.AuthResponse.DeviceLimit appareils et/ou navigateurs en même temps →\r\nDéconnectez-vous des appareils et/ou navigateurs que vous n'ut… [+925 chars]"
+    },
+    {
+      "source": {
+        "id": "la-repubblica",
+        "name": "La Repubblica"
+      },
+      "author": "Alessio Campana, Luca Monaco, Alessandro Serranò",
+      "title": "Mega incendio a Roma, le fiamme non si fermano, brucia un capannone di vestiti. Dopo l'esplosione di 50 bombole di Gpl, cadono i pali della luce. Evacuati i bimbi di un centro estivo. Case sgomberate - Repubblica Roma",
+      "description": "I vigili del fuoco al lavoro per domare il grosso incendio che da via della Monachina si è esteso a Casalotti: dopo la rimessa di camper, il centro esti…",
+      "url": "https://roma.repubblica.it/cronaca/2022/06/27/news/incendio_aurelia_centro_estivo-355655430/",
+      "urlToImage": "https://www.repstatic.it/content/localirep/img/rep-roma/2022/06/27/145911540-050301b1-c228-41e9-8e08-9908895b5fc2.jpg",
+      "publishedAt": "2022-06-27T21:50:54Z",
+      "content": "Il quadrante Nord di Roma brucia. Il maxi incendio divampato lunedì alle 13,30 in via della Monachina si è esteso ha macchia d'olio e in serata ha raggiunto Casalotti, dove ha inghiottito un capannon… [+254 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Pulzo.com"
+      },
+      "author": "Redacción Nación",
+      "title": "Iván Duque recibió premio de National Geographic por proteger los océanos - Pulzo.com",
+      "description": "El presidente colombiano Iván Duque recibió premio de National Geographic por cuidar los océanos.",
+      "url": "https://www.pulzo.com/nacion/ivan-duque-recibio-premio-national-geographic-por-proteger-oceanos-PP1576000",
+      "urlToImage": "http://static.pulzo.com/images/20220627164347/cropped-ivan-duque-5-16.jpg",
+      "publishedAt": "2022-06-27T21:45:55Z",
+      "content": "El presidente de Colombia, Iván Duque, y el expresidente de Costa Rica, Carlos Alvarado, fueron premiados hoy por la National Geographic Society por su liderazgo para proteger el 30 % de las áreas ma… [+2001 chars]"
+    }
+  ]
+}
