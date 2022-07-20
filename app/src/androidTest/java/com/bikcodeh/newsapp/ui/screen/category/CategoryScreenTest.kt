@@ -39,6 +39,7 @@ class CategoryScreenTest : BaseUITest(dispatcher = newsDispatcher) {
 
     @Test
     fun assertArticlesByCategoryAreProperlyDisplayed() {
+        typeRequest = TypeRequest.NoError
         setView()
         composeTestRule.onNodeWithTag(CategoriesTestTags.LAZY_COLUMN_CONTAINER).assertIsDisplayed()
         composeTestRule.onAllNodesWithTag(CategoriesTestTags.CARD_ITEM).assertCountEquals(5)
