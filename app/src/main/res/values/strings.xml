@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">Biknews</string>
     <string name="top_news_title">Top News</string>
     <string name="detail_screen_title">Detail</string>
     <string name="error_connectivity">Connectivity Error</string>
