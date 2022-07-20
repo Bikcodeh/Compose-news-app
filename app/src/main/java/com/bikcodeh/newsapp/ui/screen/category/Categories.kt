@@ -30,6 +30,7 @@ import com.bikcodeh.newsapp.domain.common.toError
 import com.bikcodeh.newsapp.domain.model.getAllArticleCategory
 import com.bikcodeh.newsapp.ui.component.ErrorScreen
 import com.bikcodeh.newsapp.ui.component.LoadingScreen
+import com.bikcodeh.newsapp.ui.screen.category.CategoriesTestTags.TAB_ITEM
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 import com.bikcodeh.newsapp.ui.util.Util
 import com.bikcodeh.newsapp.ui.util.Util.getTimeAgo
@@ -83,7 +84,7 @@ fun CategoryTab(
             .padding(horizontal = 4.dp, vertical = 16.dp)
             .clickable {
                 onFetchCategory(category)
-            },
+            }.testTag(TAB_ITEM),
         shape = MaterialTheme.shapes.small,
         color = background
     ) {
@@ -166,8 +167,10 @@ fun ArticleContentPreview() {
 object CategoriesTestTags {
     const val LAZY_COLUMN_CONTAINER = "LazyColumnContainer"
     const val CARD_ITEM = "CardItem"
+    const val TAB_ITEM = "TabItem"
     const val TITLE_TEXT = "TitleText"
     const val AUTHOR_TEXT = "AuthorText"
     const val PUBLISHED_AT_TEXT = "PublishedAtText"
+    const val LOADING_VIEW = "LoadingView"
 
 }

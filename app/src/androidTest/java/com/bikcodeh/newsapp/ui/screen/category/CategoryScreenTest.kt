@@ -8,6 +8,7 @@ import com.bikcodeh.newsapp.base.BaseUITest
 import com.bikcodeh.newsapp.network.FILE_SUCCESS_NEWS_BY_CATEGORY_BUSINESS_RESPONSE
 import com.bikcodeh.newsapp.network.FILE_SUCCESS_NEWS_BY_CATEGORY_GENERAL_RESPONSE
 import com.bikcodeh.newsapp.network.mockResponse
+import com.bikcodeh.newsapp.ui.screen.category.CategoriesTestTags.LOADING_VIEW
 import com.bikcodeh.newsapp.ui.screen.viewmodel.MainViewModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -42,6 +43,20 @@ class CategoryScreenTest : BaseUITest(dispatcher = newsDispatcher) {
         typeRequest = TypeRequest.NoError
         setView()
         composeTestRule.onNodeWithTag(CategoriesTestTags.LAZY_COLUMN_CONTAINER).assertIsDisplayed()
+        composeTestRule.onAllNodesWithTag(CategoriesTestTags.CARD_ITEM).assertCountEquals(3)
+    }
+
+
+    @Test
+    fun assertArticlesByCategoryAreProperlyDisplayedWhenSelectAnotherTab() {
+        typeRequest = TypeRequest.NoError
+        setView()
+        composeTestRule.onNodeWithTag(CategoriesTestTags.LAZY_COLUMN_CONTAINER).assertIsDisplayed()
+        typeRequest = TypeRequest.CategoryBusiness
+        composeTestRule.onAllNodesWithTag(CategoriesTestTags.TAB_ITEM)[0].performClick()
+        composeTestRule.onNodeWithTag(LOADING_VIEW).assertIsDisplayed()
+        composeTestRule.onNodeWithTag(CategoriesTestTags.LAZY_COLUMN_CONTAINER).assertIsDisplayed()
+        composeTestRule.onNodeWithTag(LOADING_VIEW).assertIsNotDisplayed()
         composeTestRule.onAllNodesWithTag(CategoriesTestTags.CARD_ITEM).assertCountEquals(5)
     }
 
@@ -65,7 +80,7 @@ class CategoryScreenTest : BaseUITest(dispatcher = newsDispatcher) {
     fun assertLoadingIsDisplayed() {
         typeRequest = TypeRequest.DelayResponse
         setView()
-        composeTestRule.onNodeWithTag("LoadingView").assertIsDisplayed()
+        composeTestRule.onNodeWithTag(LOADING_VIEW).assertIsDisplayed()
     }
 }
 
@@ -95,14 +110,16 @@ private val newsDispatcher by lazy {
                 }
                 TypeRequest.NoError -> {
                     mockResponse(
-                        FILE_SUCCESS_NEWS_BY_CATEGORY_BUSINESS_RESPONSE,
+                        FILE_SUCCESS_NEWS_BY_CATEGORY_GENERAL_RESPONSE,
                         HttpURLConnection.HTTP_OK
                     )
                 }
-                TypeRequest.CategoryGeneral -> mockResponse(
-                    FILE_SUCCESS_NEWS_BY_CATEGORY_GENERAL_RESPONSE,
+                TypeRequest.CategoryBusiness -> mockResponse(
+                    FILE_SUCCESS_NEWS_BY_CATEGORY_BUSINESS_RESPONSE,
                     HttpURLConnection.HTTP_OK
-                )
+                ).apply {
+                    setBodyDelay(2000, TimeUnit.MILLISECONDS)
+                }
             }
         }
     }
@@ -113,7 +130,7 @@ private sealed class TypeRequest {
     object Server : TypeRequest()
     object DelayResponse : TypeRequest()
     object NoError : TypeRequest()
-    object CategoryGeneral : TypeRequest()
+    object CategoryBusiness : TypeRequest()
 }
 
 private var typeRequest: TypeRequest = TypeRequest.NoError
