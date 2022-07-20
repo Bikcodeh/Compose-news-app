@@ -1,0 +1,71 @@
+{
+  "status": "ok",
+  "totalResults": 5,
+  "articles": [
+    {
+      "source": {
+        "id": "news-com-au",
+        "name": "News.com.au"
+      },
+      "author": "Ben Nash",
+      "title": "Best way to turn $9k into $130k - news.com.au",
+      "description": "<p>Most people realise investing is the key to not working forever, but unfortunately replacing your income through investing isn&rsquo;t as easy as some make it sound. </p>",
+      "url": "https://www.news.com.au/finance/money/investing/financial-adviser-on-the-best-way-to-get-over-the-fear-of-investing/news-story/0760a91d99b81fae921f6dbfffa5cb28",
+      "urlToImage": "https://content.api.news/v3/images/bin/6f5ff3649b24e15d1c4932cd6a4b48d5",
+      "publishedAt": "2022-06-27T22:18:22Z",
+      "content": "Learning this skill is the key to working less while still having an income but theres one thing standing in most peoples way.Most people realise investing is the key to not working forever, but unfo… [+7582 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Interempresas.net"
+      },
+      "author": null,
+      "title": "Figuras y transformables, juguetes para estimular la imaginación - Interempresas",
+      "description": "Presentamos las tendencias, los valores y la evolución de las ventas en la categoría de Figuras y Transformables, según publicamos en la Guía Comercial de Juguetes y Juegos 2022. - Análisis",
+      "url": "https://www.interempresas.net/Juguetes/Articulos/391145-Figuras-y-transformables-juguetes-para-estimular-la-imaginacion.html",
+      "urlToImage": "https://img.interempresas.net/fotos/3269735.jpeg",
+      "publishedAt": "2022-06-27T22:17:59Z",
+      "content": "Guía Comercial de Juguetes y Juegos 2022\r\nPresentamos las tendencias, los valores y la evolución de las ventas en la categoría de Figuras y Transformables, según publicamos en la Guía Comercial de Ju… [+1618 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Interempresas.net"
+      },
+      "author": null,
+      "title": "“Nos centramos en ofrecer la mejor solución para que nuestros clientes obtengan el máximo beneficio” - Interempresas",
+      "description": "La relación entre movilidad eléctrica y estaciones de servicio resulta inevitable... - Actualidad",
+      "url": "https://www.interempresas.net/Estaciones-servicio/Articulos/392456-Nos-centramos-ofrecer-mejor-solucion-que-nuestros-clientes-obtengan-maximo-beneficio.html",
+      "urlToImage": "https://img.interempresas.net/fotos/3282526.jpeg",
+      "publishedAt": "2022-06-27T22:17:49Z",
+      "content": "Entrevista a Jorge Ríos, consejero delegado de Etecnic\r\nLa relación entre movilidad eléctrica y estaciones de servicio resulta inevitable. La buena ubicación de gran parte de las estaciones, la super… [+16734 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Investing.com"
+      },
+      "author": "Reuters",
+      "title": "Un grupo de bancos estadounidenses eleva dividendos tras pruebas de resistencia Por Reuters - Investing.com España",
+      "description": "Un grupo de bancos estadounidenses eleva dividendos tras pruebas de resistencia",
+      "url": "https://es.investing.com/news/stock-market-news/un-grupo-de-bancos-estadounidenses-eleva-dividendos-tras-pruebas-de-resistencia-2266367",
+      "urlToImage": "https://i-invdn-com.investing.com/news/LYNXNPEB7B11W_L.jpg",
+      "publishedAt": "2022-06-27T22:16:00Z",
+      "content": "BENGALURU/NUEVA YORK, 27 jun (Reuters) - Morgan Stanley (NYSE:MS), Goldman Sachs (NYSE:GS), Bank of America (NYSE:BAC) y Wells Fargo (NYSE:WFC) aumentaron sus dividendos el lunes, mientras que JPMorg… [+1468 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Thelogisticsworld.com"
+      },
+      "author": "Ilse Maubert",
+      "title": "Centros de micro fulfillment, al alza para 2030 - THE LOGISTICS WORLD",
+      "description": "A corto plazo, el crecimiento de los centros de micro fulfillment se dará por grandes minoristas, como Walmart, que buscan ampliar sus servicios de entregas el mismo día.",
+      "url": "https://thelogisticsworld.com/actualidad-logistica/centros-de-micro-fulfillment-detonaran-en-la-proxima-decada/",
+      "urlToImage": "https://thelogisticsworld.com/wp-content/uploads/2020/12/modelo-micro-fulfillment-1.jpg",
+      "publishedAt": "2022-06-27T22:10:58Z",
+      "content": "...\r\nSe espera que la instalación de los centros de micro fulfillment (MFC por sus siglas en inglés) se dispare en la próxima década, según una investigación de Interact Analysis, con sede en Londres… [+2100 chars]"
+    }
+  ]
+}

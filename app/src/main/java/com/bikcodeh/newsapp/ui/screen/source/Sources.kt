@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -57,19 +58,24 @@ fun SourceScreen(mainViewModel: MainViewModel) {
             TopAppBar(title = { Text(text = "$sourceName Source") },
                 actions = {
                     var menuExpanded by remember { mutableStateOf(false) }
-                    IconButton(onClick = { menuExpanded = true }) {
+                    IconButton(
+                        modifier = Modifier.testTag(SourcesTestTags.TOB_BAR),
+                        onClick = { menuExpanded = true }) {
                         Icon(Icons.Default.MoreVert, contentDescription = null)
                     }
                     MaterialTheme(shapes = MaterialTheme.shapes.copy(medium = RoundedCornerShape(16.dp))) {
                         DropdownMenu(
+                            modifier = Modifier.testTag(SourcesTestTags.DROP_DOWN_MENU),
                             expanded = menuExpanded,
                             onDismissRequest = { menuExpanded = false }
                         ) {
                             items.forEach {
-                                DropdownMenuItem(onClick = {
-                                    mainViewModel.updateSource(it.second)
-                                    menuExpanded = false
-                                }) {
+                                DropdownMenuItem(
+                                    modifier = Modifier.testTag(SourcesTestTags.DROP_DOWN_MENU_ITEM),
+                                    onClick = {
+                                        mainViewModel.updateSource(it.second)
+                                        menuExpanded = false
+                                    }) {
                                     Text(text = it.first)
                                 }
                             }
@@ -89,7 +95,7 @@ fun SourceContent(articles: List<TopNewsArticle>) {
 
     val uriHandler = LocalUriHandler.current
 
-    LazyColumn(modifier = Modifier) {
+    LazyColumn(modifier = Modifier.testTag(SourcesTestTags.LAZY_COLUMN_CONTAINER)) {
         items(articles) { article ->
             /** configuration to open a link with a text*/
             val annotatedString = buildAnnotatedString {
@@ -112,6 +118,7 @@ fun SourceContent(articles: List<TopNewsArticle>) {
                 modifier = Modifier
                     .height(200.dp)
                     .padding(vertical = 4.dp, horizontal = 16.dp)
+                    .testTag(SourcesTestTags.CARD_CONTAINER)
             ) {
                 Column(
                     verticalArrangement = Arrangement.SpaceBetween,
@@ -123,18 +130,25 @@ fun SourceContent(articles: List<TopNewsArticle>) {
                         text = article.title ?: stringResource(id = R.string.not_available),
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.testTag(SourcesTestTags.SOURCE_TITLE)
                     )
                     Text(
                         text = article.description ?: stringResource(id = R.string.not_available),
                         maxLines = 3,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.testTag(SourcesTestTags.SOURCE_DESCRIPTION)
                     )
-                    Card(backgroundColor = Color.White, elevation = 6.dp) {
+                    Card(
+                        backgroundColor = Color.White, elevation = 6.dp,
+                        modifier = Modifier.testTag(SourcesTestTags.SOURCE_READ_FULL_ARTICLE_CARD)
+                    ) {
                         /** Clickable text with uri handler */
                         ClickableText(
                             text = annotatedString,
-                            modifier = Modifier.padding(8.dp), onClick = {
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .testTag(SourcesTestTags.CLICKABLE_TEXT), onClick = {
                                 annotatedString.getStringAnnotations(it, it).firstOrNull()
                                     ?.let { result ->
                                         if (result.tag == "URL") {
@@ -162,4 +176,16 @@ fun SourceContentPreview() {
             )
         )
     )
+}
+
+object SourcesTestTags {
+    const val LAZY_COLUMN_CONTAINER = "SourceContentContainer"
+    const val CARD_CONTAINER = "CardSourceContainer"
+    const val SOURCE_TITLE = "SourceTitle"
+    const val SOURCE_DESCRIPTION = "SourceDescription"
+    const val SOURCE_READ_FULL_ARTICLE_CARD = "SourceReadFullArticleCard"
+    const val CLICKABLE_TEXT = "SourceClickableText"
+    const val TOB_BAR = "TopBarSource"
+    const val DROP_DOWN_MENU = "DropDownMenuSources"
+    const val DROP_DOWN_MENU_ITEM = "DropDownMenuItemSources"
 }

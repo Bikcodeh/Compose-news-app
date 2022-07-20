@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">Biknews</string>
     <string name="top_news_title">Top News</string>
     <string name="detail_screen_title">Detail</string>
     <string name="error_connectivity">Connectivity Error</string>
@@ -10,4 +10,5 @@
     <string name="back">Back</string>
     <string name="author">Author</string>
     <string name="read_article">Read Full Article Here</string>
+    <string name="empty_news">Ups! Currently there aren\'t news.</string>
 </resources>
