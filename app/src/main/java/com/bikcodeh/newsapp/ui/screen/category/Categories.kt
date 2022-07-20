@@ -1,6 +1,7 @@
 package com.bikcodeh.newsapp.ui.screen.category
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +22,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,7 +56,7 @@ fun CategoriesScreen(mainViewModel: MainViewModel) {
     }
 
     Column() {
-        LazyRow() {
+        LazyRow(modifier = Modifier.background(color = Color.Transparent)) {
             items(tabItems.size) { index ->
                 val category = tabItems[index]
                 CategoryTab(
@@ -99,10 +101,11 @@ fun CategoryTab(
 
 @Composable
 fun ArticleContent(articles: List<TopNewsArticle>, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = Modifier.testTag(CategoriesTestTags.LAZY_COLUMN_CONTAINER)) {
+    LazyColumn(modifier = Modifier.background(color = Color.Transparent).testTag(CategoriesTestTags.LAZY_COLUMN_CONTAINER)) {
         items(articles) { article ->
             Card(
                 modifier
+                    .background(color = Color.Transparent)
                     .padding(8.dp)
                     .testTag(CategoriesTestTags.CARD_ITEM),
                 border = BorderStroke(2.dp, color = colorResource(id = R.color.purple_500))
@@ -133,12 +136,13 @@ fun ArticleContent(articles: List<TopNewsArticle>, modifier: Modifier = Modifier
                             Text(
                                 text = article.author
                                     ?: stringResource(id = R.string.not_available),
-                                modifier = Modifier.testTag(CategoriesTestTags.AUTHOR_TEXT)
+                                modifier = Modifier.weight(2f).padding(end = 4.dp).testTag(CategoriesTestTags.AUTHOR_TEXT)
                             )
                             article.publishedAt?.let {
                                 Text(
                                     text = Util.stringToDate(article.publishedAt).getTimeAgo(),
-                                    modifier = Modifier.testTag(CategoriesTestTags.PUBLISHED_AT_TEXT)
+                                    modifier = Modifier.weight(1f).testTag(CategoriesTestTags.PUBLISHED_AT_TEXT),
+                                    textAlign = TextAlign.End
                                 )
                             }
                         }
