@@ -130,12 +130,14 @@ fun SourceContent(articles: List<TopNewsArticle>) {
                         text = article.title ?: stringResource(id = R.string.not_available),
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 2,
+                        color = Color.White,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.testTag(SourcesTestTags.SOURCE_TITLE)
                     )
                     Text(
                         text = article.description ?: stringResource(id = R.string.not_available),
                         maxLines = 3,
+                        color = Color.White,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.testTag(SourcesTestTags.SOURCE_DESCRIPTION)
                     )

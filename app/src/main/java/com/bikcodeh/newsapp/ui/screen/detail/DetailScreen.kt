@@ -55,8 +55,8 @@ fun DetailTopBar(onBackPressed: () -> Unit = {}) {
 }
 
 @Composable
-fun InfoWithIcon(icon: ImageVector, info: String, testTag: String) {
-    Row {
+fun InfoWithIcon(modifier: Modifier = Modifier, icon: ImageVector, info: String, testTag: String) {
+    Row(modifier = modifier) {
         Icon(
             icon,
             contentDescription = stringResource(id = R.string.author),

@@ -1,5 +1,6 @@
 package com.bikcodeh.newsapp.ui.screen.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,6 +11,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -42,15 +44,17 @@ fun DetailContent(article: TopNewsArticle) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
             InfoWithIcon(
+                modifier = Modifier.weight(1f).padding(end = 4.dp),
                 icon = Icons.Default.Edit,
                 info = article.author ?: stringResource(id = R.string.not_available),
                 testTag = "authorInfoIcon"
             )
             InfoWithIcon(
+                modifier = Modifier.weight(0.4f),
                 icon = Icons.Default.DateRange,
                 info = Util.stringToDate(article.publishedAt!!).getTimeAgo(),
                 testTag = "dateInfoIcon"
