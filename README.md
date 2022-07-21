@@ -12,7 +12,8 @@
 :runner: For run the app just clone the repository and execute the app on Android Studio.
 
 ### Requirements to install the app
-- Use phones with Android Api 26+
+- Having an internet connection
+- Using phones with Android Api 23+
 
 ##### This application was developed using Kotlin and uses the following components:
 - Jetpack compose
